@@ -12,6 +12,13 @@ class App extends React.Component {
   state = {
     quests: [],
   };
+
+  componentDidMount() {
+    fetch(`http://localhost:3000/quests`)
+      .then(res => res.json())
+      .then(quests => this.setState({ quests }));
+  }
+
   render() {
     return (
       <div className="App">
@@ -28,7 +35,7 @@ class App extends React.Component {
           />
           <Route path="/shop" component={ShopPage} />
           <Route path="/profile" component={ProfilePage} />
-          <Route exact path="/" component={QuestIndexPage} />
+          <Route exact path="/" render={() => <QuestIndexPage quests={this.state.quests} />} />
         </Switch>
       </div>
     );

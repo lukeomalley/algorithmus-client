@@ -2,44 +2,103 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
 
-.header {
-  display: grid;
-  grid-template-columns: auto 1fr; 
-}
-
-.nav-bar {
-  display: grid;
-  grid-template-columns: auto auto auto;
-}
-
-.link {
-  text-decoration: none;
-  color: black;
-  font-size: 20px;
-  cursor: pointer;
-}
+/* NAVBAR */
 
 .link:hover {
   border-bottom: 2px solid black;
+}
+
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+}
+
+.nav-header a {
+  text-decoration: none;
+  font-size: 28px;
+  color: var(--mainBlack);
+  cursor: pointer;
+}
+
+.logo-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.logo-btn:hover {
+  cursor: pointer;
+}
+
+.logo-icon {
+  color: var(--mainBlack);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.nav-links {
+  list-style-type: none;
+  transition: var(--mainTransition);
+  height: 0;
+  overflow: hidden;
+}
+
+.show-nav {
+  height: 320px;
+}
+
+.show-small-nav {
+  height: 150px;
+}
+
+.nav-links li {
+  display: block;
+  padding: 1rem 1.25rem;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: var(--mainBlack);
+  transition: var(--mainTransition);
+  font-weight: bold;
+  letter-spacing: var(--mainSpacing);
+}
+
+.nav-links li:hover {
+  color: var(--primaryColor);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 576px) {
+  .navbar {
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (min-width: 792px) {
+  .logo-btn {
+    display: none;
+  }
+
+  .nav-center {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-links {
+    height: auto;
+    display: flex;
+  }
+
+  #avatar {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+  }
 }
