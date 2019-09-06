@@ -23,11 +23,23 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr; 
+}
+
+.nav-bar {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.link:hover {
+  border-bottom: 2px solid black;
 }
