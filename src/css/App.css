@@ -2,8 +2,9 @@
   text-align: center;
 }
 
-
-
+body{
+  background:#4b4b4b;
+}
 
 /* NAVBAR */
 
@@ -16,6 +17,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.25rem;
+  background:#4b4b4b;
+  color: white;
 }
 
 .nav-header a {
