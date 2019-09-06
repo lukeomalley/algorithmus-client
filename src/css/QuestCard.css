@@ -1,0 +1,21 @@
+.questContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.mainCard {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+}
+
+.imageDiv {
+}
+
+.details {
+}
+
+.cardImage {
+  width: 100%;
+}
