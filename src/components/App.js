@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import '../css/App.css';
 
 import QuestIndexPage from '../containers/QuestIndexPage';
-import ShopPage from '../containers/ShopPage'; ////
+import ShopPage from '../containers/ShopPage';
 import ProfilePage from '../components/ProfilePage';
 import QuestPage from '../containers/QuestPage';
 import Header from '../components/Header';
@@ -24,7 +24,7 @@ class App extends React.Component {
   // The state is being changed when the image of the algo is clicked on...however, it does not show the QuestPage because it doesn't change the URL
   render() {
     return (
-      <div className="App">
+      <div>
         <Header />
         <Switch>
           <Route

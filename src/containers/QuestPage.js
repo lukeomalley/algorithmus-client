@@ -3,12 +3,9 @@ import brace from 'brace';
 import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
-import '../css/QuestPage.css';
 import styled from 'styled-components';
 
 import Quest from '../components/Quest';
-//This component will be the parent to our Embedded code Editor, our output component(presentational) and our Quest component?(might not need)
-// It will need to know about which quest was clicked on
 
 const QuestPageWrapper = styled.div`
   display: grid;
@@ -22,12 +19,20 @@ const QuestPageWrapper = styled.div`
     background: #323232;
     color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    padding: 20px;
+  }
+
+  .question-detials {
+    background: #323232;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    padding: 20px;
   }
 
   .editor {
     width: 100%;
     height: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   }
 
   .right-section {
@@ -38,13 +43,25 @@ const QuestPageWrapper = styled.div`
 `;
 
 export default class QuestPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: '',
+      result: '',
+    };
   }
 
-  render() {
-    console.log(this.props.quest);
+  setValue = e => {
+    this.setState({ value: e });
+  };
 
+  runCode = code => {
+    const result = eval(code);
+    this.setState({ result });
+  };
+
+  render() {
     return (
       <>
         <QuestPageWrapper>
@@ -55,19 +72,24 @@ export default class QuestPage extends Component {
                 mode="javascript"
                 theme="monokai"
                 width="100%"
-                name="UNIQUE_ID_OF_DIV"
-                enableSnippets={true}
+                tabSize={2}
+                name="code"
+                value={this.state.value}
+                onChange={this.setValue}
                 fontSize={17}
-                enableBasicAutocompletion={true}
                 editorProps={{ $blockScrolling: true }}
                 defaultValue={this.props.quest.starter_code}
               />
             </div>
           </div>
           <div className="right-section">
-            <div className="console">Some Stuff</div>
-            <div className="console">Console</div>
+            <div className="question-detials">Quest Details</div>
+            <div className="console">
+              <h2>Console</h2>
+              <p>Result: {this.state.result}</p>
+            </div>
           </div>
+          <button onClick={() => this.runCode(this.state.value)}>Run Code</button>
         </QuestPageWrapper>
       </>
     );

@@ -1,22 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  color: white;
+  padding: 1rem 1rem;
+
+  a {
+    text-decoration: none;
+    font-size: 28px;
+    color: var(--mainWhite);
+    margin-left: 20px;
+    cursor: pointer;
+  }
+`;
 
 const Header = () => {
   return (
-    <div className="nav-header">
+    <HeaderWrapper>
       <h1>Algorithmus</h1>
-      <div className="nav-links">
-        <Link to="/" className="link">
-          Quests
-        </Link>
-        <Link to="/shop" className="link">
-          Shop
-        </Link>
-        <Link to="/profile" className="link">
-          Profile
-        </Link>
+      <div>
+        <Link to="/">Quests</Link>
+        <Link to="/shop">Shop</Link>
+        <Link to="/profile">Profile</Link>
       </div>
-    </div>
+    </HeaderWrapper>
   );
 };
 

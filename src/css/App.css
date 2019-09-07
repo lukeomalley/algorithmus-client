@@ -1,107 +1,37 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
+:root {
+  --primaryColor: #8cc8f5;
+  --mainWhite: #fff;
+  --offWhite: #f7f7f7;
+  --mainBlack: #222;
+  --mainGrey: #ececec;
+  --darkGrey: #afafaf;
+  --mainTransition: all 0.1s linear;
+  --mainSpacing: 4px;
+  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
-body{
-  background:#4b4b4b;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* NAVBAR */
-
-.link:hover {
-  border-bottom: 2px solid black;
+body {
+  font-family: 'Roboto Mono', monospace;
+  color: var(--mainWhite);
+  background-color: var(--mainBlack);
+  font-size: 1rem;
+  margin: 0;
+  height: 100%;
 }
-
-.nav-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  background:#4b4b4b;
-  color: white;
-}
-
-.nav-header a {
-  text-decoration: none;
-  font-size: 28px;
-  color: var(--mainBlack);
-  cursor: pointer;
-}
-
-.logo-btn {
-  background: transparent;
-  border: none;
-  outline: none;
-}
-
-.logo-btn:hover {
-  cursor: pointer;
-}
-
-.logo-icon {
-  color: var(--mainBlack);
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.nav-links {
-  list-style-type: none;
-  transition: var(--mainTransition);
-  height: 0;
-  overflow: hidden;
-}
-
-.show-nav {
-  height: 320px;
-}
-
-.show-small-nav {
-  height: 150px;
-}
-
-.nav-links li {
-  display: block;
-  padding: 1rem 1.25rem;
-  text-decoration: none;
-  text-transform: capitalize;
-  color: var(--mainBlack);
-  transition: var(--mainTransition);
-  font-weight: bold;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   letter-spacing: var(--mainSpacing);
-}
-
-.nav-links li:hover {
-  color: var(--primaryColor);
-  cursor: pointer;
-}
-
-@media screen and (min-width: 576px) {
-  .navbar {
-    padding: 0 2rem;
-  }
-}
-
-@media screen and (min-width: 792px) {
-  .logo-btn {
-    display: none;
-  }
-
-  .nav-center {
-    max-width: 1170px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .nav-links {
-    height: auto;
-    display: flex;
-  }
-
-  #avatar {
-    height: 18px;
-    width: 18px;
-    border-radius: 50%;
-  }
 }
