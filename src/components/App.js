@@ -20,8 +20,6 @@ class App extends React.Component {
       .then(quests => this.setState({ quests }));
   }
 
-  // I think i need to give the route component the id of the algo that was clicked so that it can actualyl go that algo
-  // The state is being changed when the image of the algo is clicked on...however, it does not show the QuestPage because it doesn't change the URL
   render() {
     return (
       <div>
