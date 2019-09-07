@@ -2,10 +2,10 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import '../css/App.css';
 
-import QuestIndexPage from '../containers/QuestIndexPage';
-import ShopPage from '../containers/ShopPage';
-import ProfilePage from '../components/ProfilePage';
-import QuestPage from '../containers/QuestPage';
+import QuestIndexPage from '../pages/QuestIndexPage';
+import ShopPage from '../pages/ShopPage';
+import ProfilePage from '../pages/ProfilePage';
+import QuestPage from '../pages/QuestPage';
 import Header from '../components/Header';
 
 class App extends React.Component {
