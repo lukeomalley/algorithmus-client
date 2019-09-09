@@ -1,17 +1,18 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import '../css/App.css';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import "../css/App.css";
 
-import QuestIndexPage from '../pages/QuestIndexPage';
-import ShopPage from '../pages/ShopPage';
-import ProfilePage from '../pages/ProfilePage';
-import QuestPage from '../pages/QuestPage';
-import Header from '../components/Header';
+import QuestIndexPage from "../pages/QuestIndexPage";
+import ShopPage from "../pages/ShopPage";
+import ProfilePage from "../pages/ProfilePage";
+import QuestPage from "../pages/QuestPage";
+import Header from "../components/Header";
+import LoginPage from "../pages/LoginPage";
 
 class App extends React.Component {
   state = {
     quests: [],
-    questObj: {},
+    questObj: {}
   };
 
   componentDidMount() {
@@ -30,7 +31,9 @@ class App extends React.Component {
             path="/quests/:id"
             render={props => {
               let questId = parseInt(props.match.params.id, 10);
-              let questObj = this.state.quests.find(quest => quest.id === questId);
+              let questObj = this.state.quests.find(
+                quest => quest.id === questId
+              );
               return questObj ? (
                 <QuestPage quest={questObj} />
               ) : (
@@ -40,6 +43,7 @@ class App extends React.Component {
           />
           <Route path="/shop" component={ShopPage} />
           <Route path="/profile" component={ProfilePage} />
+          <Route path="/login" component={LoginPage} />
 
           <Route
             exact
