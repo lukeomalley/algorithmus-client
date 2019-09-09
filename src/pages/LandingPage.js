@@ -6,7 +6,7 @@ const LandingPageWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 700px;
+  height: 740px;
   align-content: space-between;
 
   div {
