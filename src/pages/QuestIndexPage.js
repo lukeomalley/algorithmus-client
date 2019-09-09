@@ -7,6 +7,8 @@ const QuestCardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
+  width: 90vw;
+  margin: 0 auto;
 `;
 
 const QuestIndexPage = props => {
