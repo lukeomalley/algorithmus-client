@@ -41,12 +41,10 @@ const LandingPageWrapper = styled.div`
   .title img {
     width: 100%;
     height: 100%;
-    /* padding: 10px; */
   }
 
   .centered {
     position: absolute;
-    /* text-shadow:  */
     margin-top: 40px;
     top: 50%;
     left: 50%;
@@ -60,14 +58,7 @@ const LandingPageWrapper = styled.div`
 
   .footer {
     height: 250px;
-    /* border-style: solid;
-    border-color: white; */
-    /* padding: 50px; */
-    /* margin-left: 20px; */
-    /* margin-bottom: 20px; */
-    /* margin-right: 20px; */
     padding-top: 10px;
-
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   }
