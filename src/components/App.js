@@ -58,6 +58,12 @@ class App extends React.Component {
       .then(items => this.setState({ items }));
   }
 
+  toggleLogin = () => {
+    this.setState({
+      isLoggedIn: !this.state.isLoggedIn
+    });
+  };
+
   setTheme = theme => {
     if (theme === "blueTheme") this.setState({ theme: blueTheme });
   };
@@ -98,12 +104,11 @@ class App extends React.Component {
                   />
                 )}
               />
-              <Route path="/login" component={LoginPage} />
+
               <Route
                 path="/quests"
                 render={() => <QuestIndexPage quests={this.state.quests} />}
               />
-              <Route exact path="/" component={LandingPage} />
             </Switch>
           </>
         </ThemeProvider>
@@ -113,7 +118,13 @@ class App extends React.Component {
         <ThemeProvider theme={this.state.theme}>
           <>
             <GlobalStyle />
-            <LandingPage />
+            <Switch>
+              <Route
+                path="/login"
+                render={() => <LoginPage toggleLogin={this.toggleLogin} />}
+              />
+              <Route exact path="/" component={LandingPage} />
+            </Switch>
           </>
         </ThemeProvider>
       );
