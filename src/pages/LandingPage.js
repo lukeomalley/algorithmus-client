@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const LandingPageWrapper = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const LandingPageWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 780px;
+  height: 100vh;
   align-content: space-between;
 
   div {
@@ -29,13 +29,13 @@ const LandingPageWrapper = styled.div`
 
   .details {
     /* align-self: flex-start; */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px 0 rgba(171, 47, 27, 0.3);
     text-align: center;
   }
 
   .about {
     text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px 0 rgba(171, 47, 27, 0.3);
   }
 
   .title img {
@@ -60,7 +60,7 @@ const LandingPageWrapper = styled.div`
     height: 250px;
     padding-top: 10px;
     text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px 0 rgba(171, 47, 27, 0.3);
   }
 `;
 

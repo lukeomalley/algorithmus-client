@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import brace from "brace";
-import AceEditor from "react-ace";
-import "brace/mode/javascript";
-import "brace/theme/monokai";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import brace from 'brace';
+import AceEditor from 'react-ace';
+import 'brace/mode/javascript';
+import 'brace/theme/monokai';
+import styled from 'styled-components';
 
-import Quest from "../components/Quest";
+import Quest from '../components/Quest';
 
 const QuestPageWrapper = styled.div`
   display: grid;
@@ -16,14 +16,14 @@ const QuestPageWrapper = styled.div`
   margin: 0 auto;
 
   .console {
-    background: #323232;
+    background: ${props => props.theme.secondaryColor};
     color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     padding: 20px;
   }
 
   .question-detials {
-    background: #323232;
+    background: ${props => props.theme.secondaryColor};
     color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     padding: 20px;
@@ -47,8 +47,8 @@ export default class QuestPage extends Component {
     super(props);
 
     this.state = {
-      value: "",
-      result: ""
+      value: '',
+      result: '',
     };
   }
 
@@ -89,9 +89,7 @@ export default class QuestPage extends Component {
               <p>Result: {this.state.result}</p>
             </div>
           </div>
-          <button onClick={() => this.runCode(this.state.value)}>
-            Run Code
-          </button>
+          <button onClick={() => this.runCode(this.state.value)}>Run Code</button>
         </QuestPageWrapper>
       </>
     );

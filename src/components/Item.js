@@ -5,11 +5,11 @@ const ItemWrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
-  background: white;
+  background: ${props => props.theme.mainWhite};
 
   .details {
     text-align: center;
-    color: black;
+    color: ${props => props.theme.mainBlack};
     padding: 20px;
   }
 
