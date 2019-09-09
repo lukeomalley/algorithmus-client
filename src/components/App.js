@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
-import '../css/App.css';
 
+import ProtectedRoute from '../components/ProtectedRoute';
 import QuestIndexPage from '../pages/QuestIndexPage';
 import ShopPage from '../pages/ShopPage';
 import ProfilePage from '../pages/ProfilePage';
@@ -10,6 +10,7 @@ import QuestPage from '../pages/QuestPage';
 import Header from '../components/Header';
 import LoginPage from '../pages/LoginPage';
 import LandingPage from '../pages/LandingPage';
+import NotFound from '../pages/NotFound';
 import { darkTheme, blueTheme } from '../themes';
 
 const GlobalStyle = createGlobalStyle`
@@ -44,8 +45,9 @@ class App extends React.Component {
     quests: [],
     items: [],
     questObj: {},
-    isLoggedIn: false,
+    user: null,
     theme: darkTheme,
+    loading: true,
   };
 
   componentDidMount() {
@@ -65,55 +67,64 @@ class App extends React.Component {
     return <Redirect to="/quests" push />;
   };
 
+  updateUser = user => {
+    this.setState({
+      user: user,
+      loading: false,
+    });
+  };
+
   setTheme = theme => {
     if (theme === 'blueTheme') this.setState({ theme: blueTheme });
   };
 
   render() {
-    if (this.state.isLoggedIn === true) {
-      return (
-        <ThemeProvider theme={this.state.theme}>
-          <>
-            <GlobalStyle />
-            <Header />
-            <Switch>
-              <Route
-                exact
-                path="/quests/:id"
-                render={props => {
-                  let questId = parseInt(props.match.params.id, 10);
-                  let questObj = this.state.quests.find(quest => quest.id === questId);
-                  return questObj ? (
-                    <QuestPage quest={questObj} />
-                  ) : (
-                    <QuestIndexPage quests={this.state.quests} />
-                  );
-                }}
-              />
-              <Route path="/shop" render={() => <ShopPage items={this.state.items} />} />
-              <Route
-                path="/profile"
-                render={() => <ProfilePage theme={this.state.theme} setTheme={this.setTheme} />}
-              />
-
-              <Route path="/quests" render={() => <QuestIndexPage quests={this.state.quests} />} />
-            </Switch>
-          </>
-        </ThemeProvider>
-      );
-    } else {
-      return (
-        <ThemeProvider theme={this.state.theme}>
-          <>
-            <GlobalStyle />
-            <Switch>
-              <Route path="/login" render={() => <LoginPage toggleLogin={this.toggleLogin} />} />
-              <Route exact path="/" component={LandingPage} />
-            </Switch>
-          </>
-        </ThemeProvider>
-      );
-    }
+    return (
+      <ThemeProvider theme={this.state.theme}>
+        <>
+          <GlobalStyle />
+          <Header />
+          <Switch>
+            <ProtectedRoute
+              exact
+              path="/quests/:id"
+              render={props => {
+                let questId = parseInt(props.match.params.id, 10);
+                let questObj = this.state.quests.find(quest => quest.id === questId);
+                if (questObj) {
+                  return <QuestPage quest={questObj} />;
+                } else {
+                  return <NotFound />;
+                }
+              }}
+            />
+            <ProtectedRoute
+              exact
+              path="/shop"
+              render={() => <ShopPage items={this.state.items} />}
+            />
+            <ProtectedRoute
+              exact
+              path="/profile"
+              render={() => <ProfilePage theme={this.state.theme} setTheme={this.setTheme} />}
+            />
+            <ProtectedRoute
+              exact
+              path="/quests"
+              user={this.state.user}
+              render={() => <QuestIndexPage quests={this.state.quests} />}
+            />
+            <Route
+              exact
+              path="/login"
+              render={() => <LoginPage toggleLogin={this.toggleLogin} />}
+            />
+            <Route exact path="/" component={LandingPage} />
+            <Route component={NotFound} />
+          </Switch>
+        </>
+      </ThemeProvider>
+    );
   }
 }
 
