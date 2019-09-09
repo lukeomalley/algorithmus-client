@@ -15,7 +15,6 @@ const QuestIndexPage = props => {
   console.log(props);
   return (
     <div>
-      <h1>Quests Index Page</h1>
       <QuestCardContainer>
         {props.quests.map(quest => {
           return <QuestCard quest={quest} key={quest.id} handleSelect={props.handleSelect} />;

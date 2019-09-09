@@ -1,18 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Item from '../components/Item';
+
 const ShopPageContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 20px;
   width: 90vw;
   margin: 0 auto;
 `;
 
-const ShopPage = () => {
+const ItemsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 20px;
+`;
+
+const ShopPage = ({ items }) => {
   return (
     <ShopPageContainer>
-      <h1>Shop Page</h1>
+      <ItemsContainer>
+        {items.map(item => (
+          <Item item={item}></Item>
+        ))}
+      </ItemsContainer>
     </ShopPageContainer>
   );
 };
