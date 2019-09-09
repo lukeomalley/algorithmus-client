@@ -8,7 +8,7 @@ const LandingPageWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 790px;
+  height: 780px;
   align-content: space-between;
 
   div {
@@ -60,13 +60,13 @@ const LandingPageWrapper = styled.div`
 
   .footer {
     height: 250px;
-    border-style: solid;
-    border-color: white;
+    /* border-style: solid;
+    border-color: white; */
     /* padding: 50px; */
     /* margin-left: 20px; */
     /* margin-bottom: 20px; */
     /* margin-right: 20px; */
-    /* padding-top: 5px; */
+    padding-top: 10px;
 
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
