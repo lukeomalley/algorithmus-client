@@ -3,10 +3,12 @@ import styled from "styled-components";
 
 const LandingPageWrapper = styled.div`
   display: flex;
+  /* border-style: solid;
+  border-color: white; */
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 740px;
+  height: 790px;
   align-content: space-between;
 
   div {
@@ -25,27 +27,45 @@ const LandingPageWrapper = styled.div`
     margin: 5px;
   }
 
-  .footer {
-    /* align-self: */
+  .details {
+    /* align-self: flex-start; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     text-align: center;
   }
 
   .about {
     text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   }
 
   .title img {
     width: 100%;
     height: 100%;
+    /* padding: 10px; */
   }
 
   .centered {
     position: absolute;
+    /* text-shadow:  */
     margin-top: 40px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 40px;
+  }
+
+  .bottomSection {
+    display: flex;
+  }
+
+  .footer {
+    height: 200px;
+    /* border-style: solid;
+    border-color: white; */
+    padding: 50px;
+
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -57,8 +77,11 @@ const LandingPage = () => {
         <div className="centered">ALGORITHMUS</div>
       </div>
 
-      <div className="about">About Algorithmus</div>
-      <div className="footer">I am Footer</div>
+      <div className="bottomSection">
+        <div className="about">About Algorithmus</div>
+        <div className="details">More Details</div>
+      </div>
+      <div className="footer">I am the Footer</div>
     </LandingPageWrapper>
   );
 };
