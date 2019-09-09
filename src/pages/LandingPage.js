@@ -59,10 +59,14 @@ const LandingPageWrapper = styled.div`
   }
 
   .footer {
-    height: 200px;
-    /* border-style: solid;
-    border-color: white; */
-    padding: 50px;
+    height: 250px;
+    border-style: solid;
+    border-color: white;
+    /* padding: 50px; */
+    /* margin-left: 20px; */
+    /* margin-bottom: 20px; */
+    /* margin-right: 20px; */
+    /* padding-top: 5px; */
 
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
@@ -81,6 +85,7 @@ const LandingPage = () => {
         <div className="about">About Algorithmus</div>
         <div className="details">More Details</div>
       </div>
+
       <div className="footer">I am the Footer</div>
     </LandingPageWrapper>
   );
