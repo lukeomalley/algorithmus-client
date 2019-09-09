@@ -1,19 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #222;
+  background: ${props => props.theme.primaryColor};
   color: white;
   padding: 1rem 1rem;
 
   a {
     text-decoration: none;
     font-size: 28px;
-    color: var(--mainWhite);
+    color: ${props => props.theme.mainWhite};
     margin-left: 20px;
     cursor: pointer;
   }

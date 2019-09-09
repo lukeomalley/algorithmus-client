@@ -7,8 +7,8 @@ const QuestWrapper = styled.div`
   grid-gap: 20px;
   text-align: left;
   margin-bottom: 10px;
-  background: #323232;
-  color: white;
+  background: ${props => props.theme.secondaryColor};
+  color: ${props => props.theme.mainWhite};
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 
   img {
