@@ -44,7 +44,7 @@ class App extends React.Component {
     quests: [],
     items: [],
     questObj: {},
-    isLoggedIn: true,
+    isLoggedIn: false,
     theme: darkTheme,
   };
 
@@ -97,9 +97,12 @@ class App extends React.Component {
       );
     } else {
       return (
-        <div>
-          <LandingPage />
-        </div>
+        <ThemeProvider theme={this.state.theme}>
+          <>
+            <GlobalStyle />
+            <LandingPage />
+          </>
+        </ThemeProvider>
       );
     }
   }
