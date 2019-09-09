@@ -24,7 +24,7 @@ const Header = () => {
     <HeaderWrapper>
       <h1>Algorithmus</h1>
       <div>
-        <Link to="/">Quests</Link>
+        <Link to="/quests">Quests</Link>
         <Link to="/shop">Shop</Link>
         <Link to="/profile">Profile</Link>
       </div>
