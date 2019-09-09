@@ -1,16 +1,16 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
-import "../css/App.css";
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import '../css/App.css';
 
-import QuestIndexPage from "../pages/QuestIndexPage";
-import ShopPage from "../pages/ShopPage";
-import ProfilePage from "../pages/ProfilePage";
-import QuestPage from "../pages/QuestPage";
-import Header from "../components/Header";
-import LoginPage from "../pages/LoginPage";
-import LandingPage from "../pages/LandingPage";
-import { darkTheme, blueTheme } from "../themes";
+import QuestIndexPage from '../pages/QuestIndexPage';
+import ShopPage from '../pages/ShopPage';
+import ProfilePage from '../pages/ProfilePage';
+import QuestPage from '../pages/QuestPage';
+import Header from '../components/Header';
+import LoginPage from '../pages/LoginPage';
+import LandingPage from '../pages/LandingPage';
+import { darkTheme, blueTheme } from '../themes';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Crimson+Pro|Inconsolata&display=swap');
@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Inconsolata', monospace;
     color: ${props => props.theme.mainWhite};
     background-color: ${props => props.theme.primaryColor};
-    font-size: 1rem;
+    font-size: 15px;
     margin: 0;
     height: 100%;
   }
@@ -45,27 +45,28 @@ class App extends React.Component {
     items: [],
     questObj: {},
     isLoggedIn: false,
-    theme: darkTheme
+    theme: darkTheme,
   };
 
   componentDidMount() {
-    fetch(`http://localhost:3000/quests`)
+    fetch(`http://localhost:3000/api/v1/quests`)
       .then(res => res.json())
       .then(quests => this.setState({ quests }));
 
-    fetch(`http://localhost:3000/items`)
+    fetch(`http://localhost:3000/api/v1/items`)
       .then(res => res.json())
       .then(items => this.setState({ items }));
   }
 
   toggleLogin = () => {
     this.setState({
-      isLoggedIn: !this.state.isLoggedIn
+      isLoggedIn: !this.state.isLoggedIn,
     });
+    return <Redirect to="/quests" push />;
   };
 
   setTheme = theme => {
-    if (theme === "blueTheme") this.setState({ theme: blueTheme });
+    if (theme === 'blueTheme') this.setState({ theme: blueTheme });
   };
 
   render() {
@@ -81,9 +82,7 @@ class App extends React.Component {
                 path="/quests/:id"
                 render={props => {
                   let questId = parseInt(props.match.params.id, 10);
-                  let questObj = this.state.quests.find(
-                    quest => quest.id === questId
-                  );
+                  let questObj = this.state.quests.find(quest => quest.id === questId);
                   return questObj ? (
                     <QuestPage quest={questObj} />
                   ) : (
@@ -91,24 +90,13 @@ class App extends React.Component {
                   );
                 }}
               />
-              <Route
-                path="/shop"
-                render={() => <ShopPage items={this.state.items} />}
-              />
+              <Route path="/shop" render={() => <ShopPage items={this.state.items} />} />
               <Route
                 path="/profile"
-                render={() => (
-                  <ProfilePage
-                    theme={this.state.theme}
-                    setTheme={this.setTheme}
-                  />
-                )}
+                render={() => <ProfilePage theme={this.state.theme} setTheme={this.setTheme} />}
               />
 
-              <Route
-                path="/quests"
-                render={() => <QuestIndexPage quests={this.state.quests} />}
-              />
+              <Route path="/quests" render={() => <QuestIndexPage quests={this.state.quests} />} />
             </Switch>
           </>
         </ThemeProvider>
@@ -119,10 +107,7 @@ class App extends React.Component {
           <>
             <GlobalStyle />
             <Switch>
-              <Route
-                path="/login"
-                render={() => <LoginPage toggleLogin={this.toggleLogin} />}
-              />
+              <Route path="/login" render={() => <LoginPage toggleLogin={this.toggleLogin} />} />
               <Route exact path="/" component={LandingPage} />
             </Switch>
           </>

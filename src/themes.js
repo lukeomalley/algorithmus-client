@@ -1,6 +1,7 @@
 export const darkTheme = {
   primaryColor: '#222',
   secondaryColor: '#323232',
+  accentColor: 'rgb(237, 138, 110)',
   mainBlack: '#323232',
   mainWhite: '#fff',
   mainGrey: '#323232',
@@ -14,6 +15,7 @@ export const darkTheme = {
 export const blueTheme = {
   primaryColor: 'blue',
   secondaryColor: 'lightblue',
+  accentColor: 'rgb(127, 47, 27)',
   mainBlack: '#323232',
   mainWhite: '#fff',
   mainGrey: '#323232',
