@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import brace from 'brace';
-import AceEditor from 'react-ace';
-import 'brace/mode/javascript';
-import 'brace/theme/monokai';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import brace from "brace";
+import AceEditor from "react-ace";
+import "brace/mode/javascript";
+import "brace/theme/monokai";
+import styled from "styled-components";
 
-import Quest from '../components/Quest';
+import Quest from "../components/Quest";
 
 const QuestPageWrapper = styled.div`
   display: grid;
@@ -47,8 +47,8 @@ export default class QuestPage extends Component {
     super(props);
 
     this.state = {
-      value: '',
-      result: '',
+      value: "",
+      result: ""
     };
   }
 
@@ -89,7 +89,9 @@ export default class QuestPage extends Component {
               <p>Result: {this.state.result}</p>
             </div>
           </div>
-          <button onClick={() => this.runCode(this.state.value)}>Run Code</button>
+          <button onClick={() => this.runCode(this.state.value)}>
+            Run Code
+          </button>
         </QuestPageWrapper>
       </>
     );
