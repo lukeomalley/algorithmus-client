@@ -110,9 +110,12 @@ class App extends React.Component {
       );
     } else {
       return (
-        <div>
-          <LandingPage />
-        </div>
+        <ThemeProvider theme={this.state.theme}>
+          <>
+            <GlobalStyle />
+            <LandingPage />
+          </>
+        </ThemeProvider>
       );
     }
   }
