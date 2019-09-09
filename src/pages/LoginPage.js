@@ -10,8 +10,6 @@ const LoginPage = () => {
   return (
     <LoginContainer>
       <div>Hello</div>
-      <div>Goodby</div>
-      <div>About</div>
     </LoginContainer>
   );
 };
