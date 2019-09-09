@@ -8,6 +8,7 @@ import ProfilePage from "../pages/ProfilePage";
 import QuestPage from "../pages/QuestPage";
 import Header from "../components/Header";
 import LoginPage from "../pages/LoginPage";
+import LandingPage from "../pages/LandingPage";
 
 class App extends React.Component {
   state = {
@@ -46,15 +47,15 @@ class App extends React.Component {
           <Route path="/shop" component={ShopPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/login" component={LoginPage} />
-
           <Route
-            exact
-            path="/"
+            path="/quests"
             render={() => (
               //might we be able to remove this code as well? Is it ever even being hit?
               <QuestIndexPage quests={this.state.quests} />
             )}
           />
+
+          <Route exact path="/" component={LandingPage} />
         </Switch>
       </div>
     );

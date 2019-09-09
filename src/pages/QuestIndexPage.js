@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import QuestCard from '../components/QuestCard';
+import QuestCard from "../components/QuestCard";
 
 const QuestCardContainer = styled.div`
   display: grid;
@@ -16,7 +16,13 @@ const QuestIndexPage = props => {
       <h1>Quests Index Page</h1>
       <QuestCardContainer>
         {props.quests.map(quest => {
-          return <QuestCard quest={quest} key={quest.id} handleSelect={props.handleSelect} />;
+          return (
+            <QuestCard
+              quest={quest}
+              key={quest.id}
+              handleSelect={props.handleSelect}
+            />
+          );
         })}
       </QuestCardContainer>
     </div>
