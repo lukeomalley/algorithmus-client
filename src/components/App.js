@@ -1,16 +1,16 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
-import '../css/App.css';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+import "../css/App.css";
 
-import QuestIndexPage from '../pages/QuestIndexPage';
-import ShopPage from '../pages/ShopPage';
-import ProfilePage from '../pages/ProfilePage';
-import QuestPage from '../pages/QuestPage';
-import Header from '../components/Header';
-import LoginPage from '../pages/LoginPage';
-import LandingPage from '../pages/LandingPage';
-import { darkTheme, blueTheme } from '../themes';
+import QuestIndexPage from "../pages/QuestIndexPage";
+import ShopPage from "../pages/ShopPage";
+import ProfilePage from "../pages/ProfilePage";
+import QuestPage from "../pages/QuestPage";
+import Header from "../components/Header";
+import LoginPage from "../pages/LoginPage";
+import LandingPage from "../pages/LandingPage";
+import { darkTheme, blueTheme } from "../themes";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Crimson+Pro|Inconsolata&display=swap');
@@ -44,8 +44,8 @@ class App extends React.Component {
     quests: [],
     items: [],
     questObj: {},
-    isLoggedIn: true,
-    theme: darkTheme,
+    isLoggedIn: false,
+    theme: darkTheme
   };
 
   componentDidMount() {
@@ -59,7 +59,7 @@ class App extends React.Component {
   }
 
   setTheme = theme => {
-    if (theme === 'blueTheme') this.setState({ theme: blueTheme });
+    if (theme === "blueTheme") this.setState({ theme: blueTheme });
   };
 
   render() {
@@ -75,7 +75,9 @@ class App extends React.Component {
                 path="/quests/:id"
                 render={props => {
                   let questId = parseInt(props.match.params.id, 10);
-                  let questObj = this.state.quests.find(quest => quest.id === questId);
+                  let questObj = this.state.quests.find(
+                    quest => quest.id === questId
+                  );
                   return questObj ? (
                     <QuestPage quest={questObj} />
                   ) : (
@@ -83,13 +85,24 @@ class App extends React.Component {
                   );
                 }}
               />
-              <Route path="/shop" render={() => <ShopPage items={this.state.items} />} />
+              <Route
+                path="/shop"
+                render={() => <ShopPage items={this.state.items} />}
+              />
               <Route
                 path="/profile"
-                render={() => <ProfilePage theme={this.state.theme} setTheme={this.setTheme} />}
+                render={() => (
+                  <ProfilePage
+                    theme={this.state.theme}
+                    setTheme={this.setTheme}
+                  />
+                )}
               />
               <Route path="/login" component={LoginPage} />
-              <Route path="/quests" render={() => <QuestIndexPage quests={this.state.quests} />} />
+              <Route
+                path="/quests"
+                render={() => <QuestIndexPage quests={this.state.quests} />}
+              />
               <Route exact path="/" component={LandingPage} />
             </Switch>
           </>
