@@ -17,6 +17,20 @@ const HeaderWrapper = styled.div`
     margin-left: 20px;
     cursor: pointer;
   }
+  img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+  }
+
+  .userlink {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
+  }
 `;
 
 const Header = ({ user }) => {
@@ -24,12 +38,14 @@ const Header = ({ user }) => {
     <HeaderWrapper>
       <h1>Algorithmus</h1>
       {user ? (
-        <div>
+        <div className="nav-links">
           <Link to="/quests">Quests</Link>
           <Link to="/shop">Shop</Link>
           <Link to="/profile">
-            <img src={user.img_url} alt="profile picture" />
-            <p>{user.username}</p>
+            <div className="userlink">
+              <p>{user.username}</p>
+              <img src={user.avatar_url} alt="profile picture" />
+            </div>
           </Link>
         </div>
       ) : null}

@@ -123,8 +123,8 @@ class App extends React.Component {
                 exact
                 path="/profile"
                 component={ProfilePage}
-                user={this.state.user}
                 updateUser={this.updateUser}
+                user={this.state.user}
               />
               <ProtectedRoute
                 exact
