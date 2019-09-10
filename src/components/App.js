@@ -12,6 +12,7 @@ import LoginPage from "../pages/LoginPage";
 import LandingPage from "../pages/LandingPage";
 import NotFound from "../pages/NotFound";
 import { darkTheme, blueTheme } from "../themes";
+import Modal from "../components/Modal.js";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Crimson+Pro|Inconsolata&display=swap');
@@ -47,7 +48,23 @@ class App extends React.Component {
     questObj: {},
     user: null,
     theme: darkTheme,
-    loading: true
+    loading: true,
+    showModal: false,
+    modalMessage: ""
+  };
+
+  toggleShow = data => {
+    if (data.error_message) {
+      this.setState({
+        showModal: true,
+        modalMessage: data.error_message
+      });
+    } else {
+      this.setState({
+        showModal: true,
+        modalMessage: data.order_confirmation
+      });
+    }
   };
 
   componentDidMount() {
@@ -83,8 +100,10 @@ class App extends React.Component {
     return <Redirect to="/quests" push />;
   };
 
-  setTheme = theme => {
-    if (theme === "blueTheme") this.setState({ theme: blueTheme });
+  close = () => {
+    this.setState({
+      showModal: false
+    });
   };
 
   render() {
@@ -118,6 +137,10 @@ class App extends React.Component {
                 exact
                 path="/shop"
                 component={ShopPage}
+                show={this.state.showModal}
+                toggleShow={this.toggleShow}
+                close={this.close}
+                modalMessage={this.state.modalMessage}
                 user={this.state.user}
                 items={this.state.items}
               />
@@ -126,8 +149,6 @@ class App extends React.Component {
                 path="/profile"
                 component={ProfilePage}
                 user={this.state.user}
-                theme={this.state.theme}
-                setTheme={this.setTheme}
                 updateUser={this.updateUser}
               />
               <ProtectedRoute
