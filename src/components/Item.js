@@ -1,13 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { SecondaryButton } from "../styled-components/Buttons";
+import { SecondaryButton } from '../styled-components/Buttons';
 
 const ItemWrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
   background: ${props => props.theme.mainWhite};
+  justify-items: center;
 
   .details {
     text-align: center;
@@ -16,8 +17,9 @@ const ItemWrapper = styled.div`
   }
 
   img {
-    width: 100%;
+    width: 90%;
     max-height: 250px;
+    margin: 20px;
   }
 `;
 

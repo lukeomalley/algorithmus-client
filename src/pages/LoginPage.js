@@ -33,7 +33,7 @@ const LoginPage = ({ updateUser }) => {
         </>
       ) : (
         <>
-          <SignupForm />
+          <SignupForm updateUser={updateUser} />
           <button onClick={() => setSignup(true)}>Log In</button>
         </>
       )}

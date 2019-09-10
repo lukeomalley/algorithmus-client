@@ -1,21 +1,27 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import * as themes from '../themes';
+import UserProfile from '../components/UserProfile';
 
-const ProfilePage = ({ updateUser }) => {
-  console.log(themes);
+const ProfilePageWrapper = styled.div`
+  width: 90vw;
+  margin: 25px auto;
+`;
+
+const ProfilePage = ({ user, updateUser }) => {
   return (
-    <div>
-      <h1>Profile Page</h1>
+    <ProfilePageWrapper>
+      <UserProfile user={user} />
       <button
         onClick={() => {
           updateUser(null);
           window.localStorage.removeItem('token');
         }}
       >
+        {' '}
         Logout
       </button>
-    </div>
+    </ProfilePageWrapper>
   );
 };
 

@@ -150,6 +150,7 @@ class App extends React.Component {
                 component={ProfilePage}
                 user={this.state.user}
                 updateUser={this.updateUser}
+                user={this.state.user}
               />
               <ProtectedRoute
                 exact
