@@ -2,12 +2,19 @@ import React from 'react';
 
 import * as themes from '../themes';
 
-const ProfilePage = ({ theme, setTheme }) => {
+const ProfilePage = ({ updateUser }) => {
   console.log(themes);
   return (
     <div>
       <h1>Profile Page</h1>
-      <button onClick={() => setTheme('blueTheme')}>Change Theme</button>
+      <button
+        onClick={() => {
+          updateUser(null);
+          window.localStorage.removeItem('token');
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 };

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { PrimaryButton } from '../styled-components/Buttons';
 
-import SignupForm from '../components/SignupForm';
-
-const LoginFormWrapper = styled.form`
+const SignupFormWrapper = styled.form`
   display: grid;
   align-items: center;
   align-self: start;
@@ -38,7 +36,7 @@ const LoginFormWrapper = styled.form`
   }
 `;
 
-class LoginForm extends Component {
+class SignupForm extends Component {
   state = {
     username: '',
     password: '',
@@ -50,7 +48,7 @@ class LoginForm extends Component {
 
   handleLogin = e => {
     e.preventDefault();
-    fetch('http://localhost:3000/api/v1/login', {
+    fetch('http://localhost:3000/api/v1/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -72,8 +70,8 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <LoginFormWrapper onSubmit={this.handleLogin}>
-        <h1>Login</h1>
+      <SignupFormWrapper onSubmit={this.handleLogin}>
+        <h1>Create a new account</h1>
         <input
           type="text"
           placeholder="username"
@@ -88,10 +86,10 @@ class LoginForm extends Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
-        <PrimaryButton type="submit">Login</PrimaryButton>
-      </LoginFormWrapper>
+        <PrimaryButton type="submit">Signup</PrimaryButton>
+      </SignupFormWrapper>
     );
   }
 }
 
-export default withRouter(LoginForm);
+export default withRouter(SignupForm);
