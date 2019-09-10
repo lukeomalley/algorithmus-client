@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import Item from '../components/Item';
+import Item from "../components/Item";
 
 const ShopPageContainer = styled.div`
   width: 90vw;
@@ -14,7 +14,7 @@ const ItemsContainer = styled.div`
   grid-gap: 20px;
 `;
 
-const ShopPage = ({ items }) => {
+const ShopPage = ({ items, user }) => {
   return (
     <ShopPageContainer>
       <ItemsContainer>

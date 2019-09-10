@@ -19,12 +19,23 @@ const ItemWrapper = styled.div`
     width: 100%;
     max-height: 250px;
   }
-
-  /* .doubloon {
-    width: 30px;
-    height: 30px;
-  } */
 `;
+
+function postItem(item, token) {
+  fetch("http://localhost:3000/api/v1/lockers", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({ item })
+  })
+    .then(r => r.json())
+    .then(data => {
+      debugger;
+    });
+}
 
 const Item = ({ item }) => {
   const { name, img_url, description, cost } = item;
@@ -34,7 +45,11 @@ const Item = ({ item }) => {
       <div className="details">
         <h2>{name}</h2>
         <p>{description}</p>
-        <SecondaryButton>Purchase Item</SecondaryButton>
+        <SecondaryButton
+          onClick={() => postItem(item.id, localStorage.getItem("token"))}
+        >
+          Purchase Item
+        </SecondaryButton>
         <span>{cost} doubloons</span>
       </div>
     </ItemWrapper>

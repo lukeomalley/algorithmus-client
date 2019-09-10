@@ -1,17 +1,17 @@
-import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import React from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 
-import ProtectedRoute from '../components/ProtectedRoute';
-import QuestIndexPage from '../pages/QuestIndexPage';
-import ShopPage from '../pages/ShopPage';
-import ProfilePage from '../pages/ProfilePage';
-import QuestPage from '../pages/QuestPage';
-import Header from '../components/Header';
-import LoginPage from '../pages/LoginPage';
-import LandingPage from '../pages/LandingPage';
-import NotFound from '../pages/NotFound';
-import { darkTheme, blueTheme } from '../themes';
+import ProtectedRoute from "../components/ProtectedRoute";
+import QuestIndexPage from "../pages/QuestIndexPage";
+import ShopPage from "../pages/ShopPage";
+import ProfilePage from "../pages/ProfilePage";
+import QuestPage from "../pages/QuestPage";
+import Header from "../components/Header";
+import LoginPage from "../pages/LoginPage";
+import LandingPage from "../pages/LandingPage";
+import NotFound from "../pages/NotFound";
+import { darkTheme, blueTheme } from "../themes";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Crimson+Pro|Inconsolata&display=swap');
@@ -47,7 +47,7 @@ class App extends React.Component {
     questObj: {},
     user: null,
     theme: darkTheme,
-    loading: true,
+    loading: true
   };
 
   componentDidMount() {
@@ -59,11 +59,11 @@ class App extends React.Component {
       .then(res => res.json())
       .then(items => this.setState({ items }));
 
-    if (localStorage.getItem('token')) {
-      fetch('http://localhost:3000/api/v1/profile', {
+    if (localStorage.getItem("token")) {
+      fetch("http://localhost:3000/api/v1/profile", {
         headers: {
-          Authentication: `Bearer ${localStorage.getItem('token')}`,
-        },
+          Authentication: `Bearer ${localStorage.getItem("token")}`
+        }
       })
         .then(res => res.json())
         .then(user => {
@@ -74,22 +74,16 @@ class App extends React.Component {
     }
   }
 
-  toggleLogin = () => {
+  updateUser = user => {
     this.setState({
-      isLoggedIn: !this.state.isLoggedIn,
+      user: user,
+      loading: false
     });
     return <Redirect to="/quests" push />;
   };
 
-  updateUser = user => {
-    this.setState({
-      user: user,
-      loading: false,
-    });
-  };
-
   setTheme = theme => {
-    if (theme === 'blueTheme') this.setState({ theme: blueTheme });
+    if (theme === "blueTheme") this.setState({ theme: blueTheme });
   };
 
   render() {
@@ -105,7 +99,9 @@ class App extends React.Component {
               path="/quests/:id"
               render={props => {
                 let questId = parseInt(props.match.params.id, 10);
-                let questObj = this.state.quests.find(quest => quest.id === questId);
+                let questObj = this.state.quests.find(
+                  quest => quest.id === questId
+                );
                 if (this.state.user) {
                   if (questObj) {
                     return <QuestPage quest={questObj} />;
@@ -139,7 +135,11 @@ class App extends React.Component {
               component={QuestIndexPage}
               quests={this.state.quests}
             />
-            <Route exact path="/login" render={() => <LoginPage updateUser={this.updateUser} />} />
+            <Route
+              exact
+              path="/login"
+              render={() => <LoginPage updateUser={this.updateUser} />}
+            />
             <Route exact path="/" component={LandingPage} />
             <Route component={NotFound} />
           </Switch>
