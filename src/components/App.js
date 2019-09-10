@@ -133,6 +133,7 @@ class App extends React.Component {
                 user={this.state.user}
                 theme={this.state.theme}
                 setTheme={this.setTheme}
+                updateUser={this.updateUser}
               />
               <ProtectedRoute
                 exact

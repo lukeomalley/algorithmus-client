@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import LoginForm from '../components/LoginForm';
+import SignupForm from '../components/SignupForm';
 
 const LoginContainer = styled.div`
   display: grid;
@@ -21,10 +22,21 @@ const LoginContainer = styled.div`
 `;
 
 const LoginPage = ({ updateUser }) => {
+  const [signup, setSignup] = useState(true);
   return (
     <LoginContainer>
       <h1 className="title">Algorithmus</h1>
-      <LoginForm updateUser={updateUser} />
+      {signup ? (
+        <>
+          <LoginForm updateUser={updateUser} />
+          <button onClick={() => setSignup(false)}>Sign Up</button>
+        </>
+      ) : (
+        <>
+          <SignupForm />
+          <button onClick={() => setSignup(true)}>Log In</button>
+        </>
+      )}
     </LoginContainer>
   );
 };
