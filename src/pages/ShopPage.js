@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Modal from '../components/Modal.js';
 
 import Item from '../components/Item';
 
@@ -26,4 +27,27 @@ const ShopPage = ({ items, user }) => {
   );
 };
 
-export default ShopPage;
+export default class ShopPage extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    if (this.props.show === false) {
+      // debugger;
+      return (
+        <ShopPageContainer>
+          <ItemsContainer>
+            {this.props.items.map(item => (
+              <Item item={item} toggleShow={this.props.toggleShow}></Item>
+            ))}
+          </ItemsContainer>
+        </ShopPageContainer>
+      );
+    } else {
+      return <Modal message={this.props.modalMessage} close={this.props.close} />;
+    }
+  }
+}
+
+// export default ShopPage;

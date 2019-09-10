@@ -1,17 +1,18 @@
-import React from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import React from "react";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 
-import ProtectedRoute from '../components/ProtectedRoute';
-import QuestIndexPage from '../pages/QuestIndexPage';
-import ShopPage from '../pages/ShopPage';
-import ProfilePage from '../pages/ProfilePage';
-import QuestPage from '../pages/QuestPage';
-import Header from '../components/Header';
-import LoginPage from '../pages/LoginPage';
-import LandingPage from '../pages/LandingPage';
-import NotFound from '../pages/NotFound';
-import { darkTheme, blueTheme } from '../themes';
+import ProtectedRoute from "../components/ProtectedRoute";
+import QuestIndexPage from "../pages/QuestIndexPage";
+import ShopPage from "../pages/ShopPage";
+import ProfilePage from "../pages/ProfilePage";
+import QuestPage from "../pages/QuestPage";
+import Header from "../components/Header";
+import LoginPage from "../pages/LoginPage";
+import LandingPage from "../pages/LandingPage";
+import NotFound from "../pages/NotFound";
+import { darkTheme, blueTheme } from "../themes";
+import Modal from "../components/Modal.js";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Crimson+Pro|Inconsolata&display=swap');
@@ -48,6 +49,22 @@ class App extends React.Component {
     user: null,
     theme: darkTheme,
     loading: true,
+    showModal: false,
+    modalMessage: ""
+  };
+
+  toggleShow = data => {
+    if (data.error_message) {
+      this.setState({
+        showModal: true,
+        modalMessage: data.error_message
+      });
+    } else {
+      this.setState({
+        showModal: true,
+        modalMessage: data.order_confirmation
+      });
+    }
   };
 
   componentDidMount() {
@@ -59,16 +76,16 @@ class App extends React.Component {
       .then(res => res.json())
       .then(items => this.setState({ items }));
 
-    if (localStorage.getItem('token')) {
-      fetch('http://localhost:3000/api/v1/profile', {
+    if (localStorage.getItem("token")) {
+      fetch("http://localhost:3000/api/v1/profile", {
         headers: {
-          Authentication: `Bearer ${localStorage.getItem('token')}`,
-        },
+          Authentication: `Bearer ${localStorage.getItem("token")}`
+        }
       })
         .then(res => res.json())
         .then(user => {
           this.updateUser(user);
-          this.props.history.push('/quests');
+          this.props.history.push("/quests");
         });
     } else {
       this.setState({ loading: false });
@@ -78,13 +95,15 @@ class App extends React.Component {
   updateUser = user => {
     this.setState({
       user: user,
-      loading: false,
+      loading: false
     });
     return <Redirect to="/quests" push />;
   };
 
-  setTheme = theme => {
-    if (theme === 'blueTheme') this.setState({ theme: blueTheme });
+  close = () => {
+    this.setState({
+      showModal: false
+    });
   };
 
   render() {
@@ -100,7 +119,9 @@ class App extends React.Component {
                 path="/quests/:id"
                 render={props => {
                   let questId = parseInt(props.match.params.id, 10);
-                  let questObj = this.state.quests.find(quest => quest.id === questId);
+                  let questObj = this.state.quests.find(
+                    quest => quest.id === questId
+                  );
                   if (this.state.user) {
                     if (questObj) {
                       return <QuestPage quest={questObj} />;
@@ -116,6 +137,10 @@ class App extends React.Component {
                 exact
                 path="/shop"
                 component={ShopPage}
+                show={this.state.showModal}
+                toggleShow={this.toggleShow}
+                close={this.close}
+                modalMessage={this.state.modalMessage}
                 user={this.state.user}
                 items={this.state.items}
               />
@@ -123,6 +148,7 @@ class App extends React.Component {
                 exact
                 path="/profile"
                 component={ProfilePage}
+                user={this.state.user}
                 updateUser={this.updateUser}
                 user={this.state.user}
               />

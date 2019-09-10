@@ -23,37 +23,49 @@ const ItemWrapper = styled.div`
   }
 `;
 
-function postItem(item, token) {
-  fetch('http://localhost:3000/api/v1/lockers', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({ item }),
-  })
-    .then(r => r.json())
-    .then(data => {
-      debugger;
-    });
+export default class Item extends React.Component {
+  constructor() {
+    super();
+  }
+
+  postItem = (item, token) => {
+    fetch("http://localhost:3000/api/v1/lockers", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ item })
+    })
+      .then(r => r.json())
+      .then(data => {
+        // (data) => item.CALLLBACK
+        // this is where I am going to need to call the function that will toggle the state of the modal
+        // pass it back to shop page
+        // pass it back to app
+        this.props.toggleShow(data);
+      });
+  };
+
+  render() {
+    // debugger;
+    return (
+      <ItemWrapper>
+        <img src={this.props.item.img_url} alt={this.props.item.name} />
+        <div className="details">
+          <h2>{this.props.item.name}</h2>
+          <p>{this.props.item.description}</p>
+          <SecondaryButton
+            onClick={() =>
+              this.postItem(this.props.item.id, localStorage.getItem("token"))
+            }
+          >
+            Purchase Item
+          </SecondaryButton>
+          <span>{this.props.item.cost} doubloons</span>
+        </div>
+      </ItemWrapper>
+    );
+  }
 }
-
-const Item = ({ item }) => {
-  const { name, img_url, description, cost } = item;
-  return (
-    <ItemWrapper>
-      <img src={img_url} alt={name} />
-      <div className="details">
-        <h2>{name}</h2>
-        <p>{description}</p>
-        <SecondaryButton onClick={() => postItem(item.id, localStorage.getItem('token'))}>
-          Purchase Item
-        </SecondaryButton>
-        <span>{cost} doubloons</span>
-      </div>
-    </ItemWrapper>
-  );
-};
-
-export default Item;
