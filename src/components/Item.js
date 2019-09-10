@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { SecondaryButton } from "../styled-components/secondaryButton";
+import { SecondaryButton } from "../styled-components/Buttons";
 
 const ItemWrapper = styled.div`
   display: grid;
@@ -34,7 +34,7 @@ const Item = ({ item }) => {
       <div className="details">
         <h2>{name}</h2>
         <p>{description}</p>
-        <SecondaryButton className="button">Purchase Item</SecondaryButton>
+        <SecondaryButton>Purchase Item</SecondaryButton>
         <span>{cost} doubloons</span>
       </div>
     </ItemWrapper>
