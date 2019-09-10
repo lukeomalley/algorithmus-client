@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
+import { withRouter } from 'react-router-dom';
 import { PrimaryButton } from '../styled-components/Buttons';
+import LoginPage from '../pages/LoginPage';
 
 const LoginFormWrapper = styled.form`
   display: grid;
@@ -36,7 +37,7 @@ const LoginFormWrapper = styled.form`
   }
 `;
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   state = {
     username: '',
     password: '',
@@ -61,6 +62,7 @@ export default class LoginForm extends Component {
         if (data.authenticated) {
           localStorage.setItem('token', data.token);
           this.props.updateUser(data.user);
+          this.props.history.push('/quests');
         } else {
           alert('Incorrect username or password');
         }
@@ -90,3 +92,5 @@ export default class LoginForm extends Component {
     );
   }
 }
+
+export default withRouter(LoginForm);

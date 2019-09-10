@@ -13,6 +13,7 @@ const QuestCardWrapper = styled.div`
 
   img {
     width: 100%;
+    min-height: 350px;
   }
 `;
 

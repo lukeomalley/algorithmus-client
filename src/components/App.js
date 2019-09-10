@@ -58,6 +58,20 @@ class App extends React.Component {
     fetch(`http://localhost:3000/api/v1/items`)
       .then(res => res.json())
       .then(items => this.setState({ items }));
+
+    if (localStorage.getItem('token')) {
+      fetch('http://localhost:3000/api/v1/profile', {
+        headers: {
+          Authentication: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+        .then(res => res.json())
+        .then(user => {
+          this.updateUser(user);
+        });
+    } else {
+      this.setState({ loading: false });
+    }
   }
 
   toggleLogin = () => {
@@ -86,34 +100,44 @@ class App extends React.Component {
           {this.state.user ? <Header user={this.state.user} /> : null}
 
           <Switch>
-            <ProtectedRoute
+            <Route
               exact
               path="/quests/:id"
               render={props => {
                 let questId = parseInt(props.match.params.id, 10);
                 let questObj = this.state.quests.find(quest => quest.id === questId);
-                if (questObj) {
-                  return <QuestPage quest={questObj} />;
+                if (this.state.user) {
+                  if (questObj) {
+                    return <QuestPage quest={questObj} />;
+                  } else {
+                    return <NotFound />;
+                  }
                 } else {
-                  return <NotFound />;
+                  return <LoginPage />;
                 }
               }}
             />
             <ProtectedRoute
               exact
               path="/shop"
-              render={() => <ShopPage items={this.state.items} />}
+              component={ShopPage}
+              user={this.state.user}
+              items={this.state.items}
             />
             <ProtectedRoute
               exact
               path="/profile"
-              render={() => <ProfilePage theme={this.state.theme} setTheme={this.setTheme} />}
+              component={ProfilePage}
+              user={this.state.user}
+              theme={this.state.theme}
+              setTheme={this.setTheme}
             />
             <ProtectedRoute
               exact
               path="/quests"
               user={this.state.user}
-              render={() => <QuestIndexPage quests={this.state.quests} />}
+              component={QuestIndexPage}
+              quests={this.state.quests}
             />
             <Route exact path="/login" render={() => <LoginPage updateUser={this.updateUser} />} />
             <Route exact path="/" component={LandingPage} />
