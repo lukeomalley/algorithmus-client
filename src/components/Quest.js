@@ -6,13 +6,15 @@ const QuestWrapper = styled.div`
   grid-template-columns: auto auto;
   grid-gap: 20px;
   text-align: left;
+  align-items: center;
   margin-bottom: 10px;
   background: ${props => props.theme.secondaryColor};
   color: ${props => props.theme.mainWhite};
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 
   img {
-    width: 100%;
+    max-height: 100px;
+    background: ${props => props.theme.mainWhite};
     margin: 10px;
   }
 
@@ -26,10 +28,11 @@ const QuestWrapper = styled.div`
 `;
 
 const Quest = ({ quest }) => {
+  const image = require(`../images/${quest.img_url}`);
   return (
     <QuestWrapper>
       <div>
-        <img src={quest.img_url} alt={quest.title} />
+        <img src={image} alt={quest.title} />
       </div>
       <div className="details">
         <h1>{quest.title}</h1>

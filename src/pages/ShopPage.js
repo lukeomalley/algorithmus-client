@@ -10,7 +10,7 @@ const ShopPageContainer = styled.div`
 
 const ItemsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
   grid-gap: 20px;
 `;
 
@@ -19,7 +19,7 @@ const ShopPage = ({ items, user }) => {
     <ShopPageContainer>
       <ItemsContainer>
         {items.map(item => (
-          <Item item={item}></Item>
+          <Item key={item.id} item={item}></Item>
         ))}
       </ItemsContainer>
     </ShopPageContainer>

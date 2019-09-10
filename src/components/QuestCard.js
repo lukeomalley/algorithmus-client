@@ -1,37 +1,56 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const QuestCardWrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+  text-align: center;
 
   .details {
     background: ${props => props.theme.mainWhite};
+    padding: 20px;
+  }
+
+  .rewards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    font-size: 20px;
   }
 
   img {
     width: 100%;
-    min-height: 350px;
+    height: 400px;
+    padding: 20px;
+    background: white;
+  }
+
+  h3 {
+    letter-spacing: 1px;
+  }
+
+  a {
+    text-decoration: none;
+    color: ${props => props.theme.mainBlack};
+    font-size: 1rem;
   }
 `;
 
 const QuestCard = props => {
+  const image = require(`../images/${props.quest.img_url}`);
   return (
     <QuestCardWrapper>
-      <img src={props.quest.img_url} className="cardImage" alt="card"></img>
-      <div className="details">
-        <Link to={`/quests/${props.quest.id}`}>{props.quest.title}</Link>
-        <p>
-          {props.quest.doubloon}
-          <span>{/* Doubloon Icon Here*/}</span>
-        </p>
-        <p>
-          {props.quest.xp}
-          <span>{/* Experience Icon Here*/}</span>
-        </p>
-      </div>
+      <Link to={`/quests/${props.quest.id}`}>
+        <img src={image} className="cardImage" alt="card" />
+        <div className="details">
+          <h3>{props.quest.title}</h3>
+          <div className="rewards">
+            <h5>{props.quest.doubloon}💰</h5>
+            <h5>{props.quest.xp} 🍄</h5>
+          </div>
+        </div>
+      </Link>
     </QuestCardWrapper>
   );
 };

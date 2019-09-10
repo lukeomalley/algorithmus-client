@@ -5,10 +5,10 @@ import QuestCard from '../components/QuestCard';
 
 const QuestCardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-gap: 20px;
   width: 90vw;
-  margin: 0 auto;
+  margin: 25px auto;
 `;
 
 const QuestIndexPage = props => {

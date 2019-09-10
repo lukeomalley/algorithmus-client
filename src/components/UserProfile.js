@@ -18,7 +18,7 @@ const UserProfile = ({ user }) => {
   return (
     <UserProfileWrapper>
       <h2>{user.username}</h2>
-      <img src={user.avatar_url} alt={user.username} />
+      <img src={`https://api.adorable.io/avatars/285/${user.username}.png`} alt={user.username} />
     </UserProfileWrapper>
   );
 };

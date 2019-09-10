@@ -24,7 +24,9 @@ const HeaderWrapper = styled.div`
   }
 
   .userlink {
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 10px;
     align-items: center;
   }
 
@@ -44,7 +46,10 @@ const Header = ({ user }) => {
           <Link to="/profile">
             <div className="userlink">
               <p>{user.username}</p>
-              <img src={user.avatar_url} alt="profile picture" />
+              <img
+                src={`https://api.adorable.io/avatars/285/${user.username}.png`}
+                alt={user.username}
+              />
             </div>
           </Link>
         </div>
