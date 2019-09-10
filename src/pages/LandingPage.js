@@ -78,24 +78,24 @@ const LandingPage = () => {
   return (
     <LandingPageWrapper>
       <div className="title">
-        <img src="https://static.vecteezy.com/system/resources/previews/000/524/720/non_2x/fantasy-wide-sci-fi-martian-background-for-ui-game-vector.jpg" />
+        <img src="http://www.aljanh.net/data/archive/img/3646125027.jpeg" />
         <div className="centered">ALGORITHMUS</div>
       </div>
 
-      <div className="bottomSection">
+      {/* <div className="bottomSection">
         <div className="about">
-          <h3>About</h3>
-          {/* <div>
+          <h3>About</h3> */}
+      {/* <div>
             Algorithmus is a site designed for those who wish to further their
             skills as a software developer. The algorithms and code challenges
             found here are geared towards preparing junior developers for
             technical interviews.{" "}
           </div> */}
-        </div>
+      {/* </div>
         <div className="details">More Details</div>
-      </div>
+      </div> */}
 
-      <div className="footer">
+      {/* <div className="footer">
         <img
           className="kolton"
           src={
@@ -111,9 +111,12 @@ const LandingPage = () => {
             "https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-1/c0.24.320.320a/p320x320/11863322_10207962970698525_6376937075346576264_n.jpg?_nc_cat=101&_nc_oc=AQnkPDvJhs4q6lCvVINUPwF17EEiWwB3tPRnVAnSKvwy6itCnYbNvqxYRKuP74YXuM8&_nc_ht=scontent-iad3-1.xx&oh=a4169f3803a84461578a3b0e3e6dce6c&oe=5E13D5E7"
           }
         />
-      </div>
+      </div> */}
     </LandingPageWrapper>
   );
 };
 
 export default LandingPage;
+
+//https://newevolutiondesigns.com/images/freebies/space-wallpaper-5.jpg
+//http://www.aljanh.net/data/archive/img/3646125027.jpeg

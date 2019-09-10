@@ -1,5 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+
+import { SecondaryButton } from "../styled-components/secondaryButton";
 
 const ItemWrapper = styled.div`
   display: grid;
@@ -17,17 +19,23 @@ const ItemWrapper = styled.div`
     width: 100%;
     max-height: 250px;
   }
+
+  /* .doubloon {
+    width: 30px;
+    height: 30px;
+  } */
 `;
 
 const Item = ({ item }) => {
-  const { name, img_url, description } = item;
+  const { name, img_url, description, cost } = item;
   return (
     <ItemWrapper>
       <img src={img_url} alt={name} />
       <div className="details">
         <h2>{name}</h2>
         <p>{description}</p>
-        <p></p>
+        <SecondaryButton className="button">Purchase Item</SecondaryButton>
+        <span>{cost} doubloons</span>
       </div>
     </ItemWrapper>
   );
