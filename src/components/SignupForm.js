@@ -46,7 +46,7 @@ class SignupForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleLogin = e => {
+  handleSignup = e => {
     e.preventDefault();
     fetch('http://localhost:3000/api/v1/signup', {
       method: 'POST',
@@ -63,19 +63,20 @@ class SignupForm extends Component {
           this.props.updateUser(data.user);
           this.props.history.push('/quests');
         } else {
-          alert('Incorrect username or password');
+          alert(data.error_message);
         }
       });
   };
 
   render() {
     return (
-      <SignupFormWrapper onSubmit={this.handleLogin}>
+      <SignupFormWrapper onSubmit={this.handleSignup}>
         <h1>Create a new account</h1>
         <input
           type="text"
           placeholder="username"
           name="username"
+          required
           value={this.state.username}
           onChange={this.handleChange}
         />
@@ -83,6 +84,7 @@ class SignupForm extends Component {
           type="password"
           placeholder="password"
           name="password"
+          required
           value={this.state.password}
           onChange={this.handleChange}
         />

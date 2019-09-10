@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { PrimaryButton } from '../styled-components/Buttons';
-
-import SignupForm from '../components/SignupForm';
 
 const LoginFormWrapper = styled.form`
   display: grid;
@@ -78,6 +76,7 @@ class LoginForm extends Component {
           type="text"
           placeholder="username"
           name="username"
+          required
           value={this.state.username}
           onChange={this.handleChange}
         />
@@ -85,6 +84,7 @@ class LoginForm extends Component {
           type="password"
           placeholder="password"
           name="password"
+          required
           value={this.state.password}
           onChange={this.handleChange}
         />

@@ -1,12 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import * as themes from '../themes';
+const ProfilePageWrapper = styled.div`
+  width: 90vw;
+  margin: 0 auto;
+  text-align: center;
+`;
 
-const ProfilePage = ({ updateUser }) => {
-  console.log(themes);
+const ProfilePage = ({ updateUser, user }) => {
   return (
-    <div>
-      <h1>Profile Page</h1>
+    <ProfilePageWrapper>
+      <h1>{user.username}</h1>
       <button
         onClick={() => {
           updateUser(null);
@@ -15,7 +19,7 @@ const ProfilePage = ({ updateUser }) => {
       >
         Logout
       </button>
-    </div>
+    </ProfilePageWrapper>
   );
 };
 

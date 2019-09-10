@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Item from "../components/Item";
+import Item from '../components/Item';
 
 const ShopPageContainer = styled.div`
   width: 90vw;

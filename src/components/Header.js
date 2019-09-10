@@ -27,7 +27,10 @@ const Header = ({ user }) => {
         <div>
           <Link to="/quests">Quests</Link>
           <Link to="/shop">Shop</Link>
-          <Link to="/profile">Profile</Link>
+          <Link to="/profile">
+            <img src={user.img_url} alt="profile picture" />
+            <p>{user.username}</p>
+          </Link>
         </div>
       ) : null}
     </HeaderWrapper>

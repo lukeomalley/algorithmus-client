@@ -1,13 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { SecondaryButton } from "../styled-components/Buttons";
+import { SecondaryButton } from '../styled-components/Buttons';
 
 const ItemWrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
   background: ${props => props.theme.mainWhite};
+  justify-items: center;
 
   .details {
     text-align: center;
@@ -16,20 +17,21 @@ const ItemWrapper = styled.div`
   }
 
   img {
-    width: 100%;
+    width: 90%;
     max-height: 250px;
+    margin: 20px;
   }
 `;
 
 function postItem(item, token) {
-  fetch("http://localhost:3000/api/v1/lockers", {
-    method: "POST",
+  fetch('http://localhost:3000/api/v1/lockers', {
+    method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      Accept: "application/json"
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
-    body: JSON.stringify({ item })
+    body: JSON.stringify({ item }),
   })
     .then(r => r.json())
     .then(data => {
@@ -45,9 +47,7 @@ const Item = ({ item }) => {
       <div className="details">
         <h2>{name}</h2>
         <p>{description}</p>
-        <SecondaryButton
-          onClick={() => postItem(item.id, localStorage.getItem("token"))}
-        >
+        <SecondaryButton onClick={() => postItem(item.id, localStorage.getItem('token'))}>
           Purchase Item
         </SecondaryButton>
         <span>{cost} doubloons</span>
