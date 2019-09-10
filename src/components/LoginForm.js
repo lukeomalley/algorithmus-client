@@ -6,8 +6,14 @@ import { PrimaryButton } from '../styled-components/Buttons';
 const LoginFormWrapper = styled.form`
   display: grid;
   align-items: center;
+  align-self: start;
   justify-content: center;
   height: 100%;
+  border-left: 3px solid ${props => props.theme.accentColor};
+  height: 500px;
+  width: 500px;
+
+  background: ${props => props.theme.primaryColor};
 
   h1 {
     text-align: center;
@@ -20,6 +26,7 @@ const LoginFormWrapper = styled.form`
     background: ${props => props.theme.primaryColor};
     color: ${props => props.theme.mainWhite};
     border-bottom: 1px solid ${props => props.theme.mainWhite};
+    font-family: 'Inconsolata', monospace;
   }
 
   input[type='text']:focus,
@@ -30,25 +37,54 @@ const LoginFormWrapper = styled.form`
 `;
 
 export default class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
+  state = {
+    username: '',
+    password: '',
+  };
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.trget.value });
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleLogin = e => {
+    e.preventDefault();
+    fetch('http://localhost:3000/api/v1/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({ username: this.state.username, password: this.state.password }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.authenticated) {
+          localStorage.setItem('token', data.token);
+          this.props.updateUser(data.user);
+        } else {
+          alert('Incorrect username or password');
+        }
+      });
   };
 
   render() {
     return (
-      <LoginFormWrapper onSubmit={this.props.toggleLogin}>
-        <h1>Algorithmus Login</h1>
-        <input type="text" placeholder="Username" name="username" />
-        <input type="password" placeholder="Password" name="password" />
+      <LoginFormWrapper onSubmit={this.handleLogin}>
+        <h1>Login</h1>
+        <input
+          type="text"
+          placeholder="username"
+          name="username"
+          value={this.state.username}
+          onChange={this.handleChange}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          name="password"
+          value={this.state.password}
+          onChange={this.handleChange}
+        />
         <PrimaryButton type="submit">Login</PrimaryButton>
       </LoginFormWrapper>
     );

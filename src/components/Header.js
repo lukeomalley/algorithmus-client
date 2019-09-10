@@ -19,15 +19,17 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <HeaderWrapper>
       <h1>Algorithmus</h1>
-      <div>
-        <Link to="/quests">Quests</Link>
-        <Link to="/shop">Shop</Link>
-        <Link to="/profile">Profile</Link>
-      </div>
+      {user ? (
+        <div>
+          <Link to="/quests">Quests</Link>
+          <Link to="/shop">Shop</Link>
+          <Link to="/profile">Profile</Link>
+        </div>
+      ) : null}
     </HeaderWrapper>
   );
 };

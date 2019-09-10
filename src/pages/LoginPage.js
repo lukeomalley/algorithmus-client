@@ -1,30 +1,30 @@
-import React from "react";
-import styled from "styled-components";
-import LoginForm from "../components/LoginForm";
+import React from 'react';
+import styled from 'styled-components';
+import LoginForm from '../components/LoginForm';
 
 const LoginContainer = styled.div`
-  display: flex;
+  display: grid;
   justify-content: center;
+  justify-items: center;
   height: 100vh;
   align-items: center;
-  background-image: url("https://d1yn1kh78jj1rr.cloudfront.net/image/preview/rZrBTAzPMjdockp2l/storyblocks-space-background-alien-fantasy-landscape-with-rocks-and-craters-with-blue-liquid-inside-orange-planet-empty-surface-cloudy-sky-and-falling-comet-computer-game-backdrop-cartoon-vector-illustration_BVgVNqnXZB_SB_PM.jpg");
+  text-align: center;
   background-size: cover;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(237, 138, 110, 0.45)),
+    url('https://images.pexels.com/photos/220201/pexels-photo-220201.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=1080&w=1920');
 
-  .card {
-    /* border-style: solid;
-    border-color: white; */
-    height: 500px;
-    width: 500px;
-    background: ${props => props.theme.primaryColor};
+  .title {
+    text-align: center;
+    font-size: 50px;
+    letter-spacing: 20px;
   }
 `;
 
-const LoginPage = props => {
+const LoginPage = ({ updateUser }) => {
   return (
     <LoginContainer>
-      <div className="card">
-        <LoginForm toggleLogin={props.toggleLogin} />
-      </div>
+      <h1 className="title">Algorithmus</h1>
+      <LoginForm updateUser={updateUser} />
     </LoginContainer>
   );
 };

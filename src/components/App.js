@@ -83,7 +83,8 @@ class App extends React.Component {
       <ThemeProvider theme={this.state.theme}>
         <>
           <GlobalStyle />
-          <Header />
+          {this.state.user ? <Header user={this.state.user} /> : null}
+
           <Switch>
             <ProtectedRoute
               exact
@@ -114,11 +115,7 @@ class App extends React.Component {
               user={this.state.user}
               render={() => <QuestIndexPage quests={this.state.quests} />}
             />
-            <Route
-              exact
-              path="/login"
-              render={() => <LoginPage toggleLogin={this.toggleLogin} />}
-            />
+            <Route exact path="/login" render={() => <LoginPage updateUser={this.updateUser} />} />
             <Route exact path="/" component={LandingPage} />
             <Route component={NotFound} />
           </Switch>
