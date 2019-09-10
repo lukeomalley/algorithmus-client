@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 
 import ProtectedRoute from "../components/ProtectedRoute";
@@ -68,6 +68,7 @@ class App extends React.Component {
         .then(res => res.json())
         .then(user => {
           this.updateUser(user);
+          this.props.history.push("/quests");
         });
     } else {
       this.setState({ loading: false });
@@ -92,61 +93,62 @@ class App extends React.Component {
         <>
           <GlobalStyle />
           {this.state.user ? <Header user={this.state.user} /> : null}
-
-          <Switch>
-            <Route
-              exact
-              path="/quests/:id"
-              render={props => {
-                let questId = parseInt(props.match.params.id, 10);
-                let questObj = this.state.quests.find(
-                  quest => quest.id === questId
-                );
-                if (this.state.user) {
-                  if (questObj) {
-                    return <QuestPage quest={questObj} />;
+          {!this.state.loading ? (
+            <Switch>
+              <Route
+                exact
+                path="/quests/:id"
+                render={props => {
+                  let questId = parseInt(props.match.params.id, 10);
+                  let questObj = this.state.quests.find(
+                    quest => quest.id === questId
+                  );
+                  if (this.state.user) {
+                    if (questObj) {
+                      return <QuestPage quest={questObj} />;
+                    } else {
+                      return <NotFound />;
+                    }
                   } else {
-                    return <NotFound />;
+                    return <LoginPage />;
                   }
-                } else {
-                  return <LoginPage />;
-                }
-              }}
-            />
-            <ProtectedRoute
-              exact
-              path="/shop"
-              component={ShopPage}
-              user={this.state.user}
-              items={this.state.items}
-            />
-            <ProtectedRoute
-              exact
-              path="/profile"
-              component={ProfilePage}
-              user={this.state.user}
-              theme={this.state.theme}
-              setTheme={this.setTheme}
-            />
-            <ProtectedRoute
-              exact
-              path="/quests"
-              user={this.state.user}
-              component={QuestIndexPage}
-              quests={this.state.quests}
-            />
-            <Route
-              exact
-              path="/login"
-              render={() => <LoginPage updateUser={this.updateUser} />}
-            />
-            <Route exact path="/" component={LandingPage} />
-            <Route component={NotFound} />
-          </Switch>
+                }}
+              />
+              <ProtectedRoute
+                exact
+                path="/shop"
+                component={ShopPage}
+                user={this.state.user}
+                items={this.state.items}
+              />
+              <ProtectedRoute
+                exact
+                path="/profile"
+                component={ProfilePage}
+                user={this.state.user}
+                theme={this.state.theme}
+                setTheme={this.setTheme}
+              />
+              <ProtectedRoute
+                exact
+                path="/quests"
+                user={this.state.user}
+                component={QuestIndexPage}
+                quests={this.state.quests}
+              />
+              <Route
+                exact
+                path="/login"
+                render={() => <LoginPage updateUser={this.updateUser} />}
+              />
+              <Route exact path="/" component={LandingPage} />
+              <Route component={NotFound} />
+            </Switch>
+          ) : null}
         </>
       </ThemeProvider>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
