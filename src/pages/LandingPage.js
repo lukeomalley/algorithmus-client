@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const LandingPageWrapper = styled.div`
   display: flex;
@@ -80,6 +81,7 @@ const LandingPage = () => {
       <div className="title">
         <img src="http://www.aljanh.net/data/archive/img/3646125027.jpeg" />
         <div className="centered">ALGORITHMUS</div>
+        <Link to="/login">Login</Link>
       </div>
 
       {/* <div className="bottomSection">
