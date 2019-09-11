@@ -1,21 +1,30 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const LandingPageWrapper = styled.div`
   display: flex;
-  /* border-style: solid;
-  border-color: white; */
+
+  background-image: url("http://www.aljanh.net/data/archive/img/3646125027.jpeg");
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   height: 100vh;
   align-content: space-between;
 
+  .link {
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: white;
+    align-items: center;
+  }
+
   div {
     width: auto;
-    /* border-style: solid; */
-    /* border-color: white; */
     width: 100%;
     margin: 5px;
     height: 100%;
@@ -79,8 +88,9 @@ const LandingPage = () => {
   return (
     <LandingPageWrapper>
       <div className="title">
-        <img src="http://www.aljanh.net/data/archive/img/3646125027.jpeg" />
         <div className="centered">ALGORITHMUS</div>
+      </div>
+      <div className="link">
         <Link to="/login">Login</Link>
       </div>
 
