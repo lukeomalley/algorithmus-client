@@ -6,19 +6,14 @@ const UserProfileWrapper = styled.div`
   display: flex;
   grid-template-columns: 1fr;
   height: 83vh;
-  /* border-style: solid;
-  border-color: white; */
   flex-direction: column;
   align-items: center;
-  /* align-content: space-around; */
   justify-content: space-around;
 
   .topSection {
     display: flex;
     justify-content: center;
     align-content: center;
-    /* border-style: solid;
-    border-color: white; */
     width: 98%;
     height: 45%;
   }
@@ -26,38 +21,46 @@ const UserProfileWrapper = styled.div`
   .bottomSection {
     display: flex;
     justify-content: space-between;
-    /* border-style: solid;
-    border-color: white; */
     width: 98%;
     height: 45%;
   }
 
   .imageContainer {
     display: flex;
-    height: 200px;
-    width: 200px;
-    /* margin: 5px; */
-    /* border-style: solid;
-    border-color: white; */
   }
 
   .button {
-    /* border-style: solid;
-    border-color: white; */
     height: 20%;
   }
 
   .details {
-    /* border-style: solid;
-    border-color: white; */
     box-shadow: 0 4px 8px 0 rgba(237, 138, 110, 0.5);
+    border-bottom: 3px solid ${props => props.theme.accentColor};
     width: 48%;
   }
 
   .leaderboard {
     box-shadow: 0 4px 8px 0 rgba(237, 138, 110, 0.5);
-
+    border-bottom: 3px solid ${props => props.theme.accentColor};
     width: 48%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    /* align-content: center; */
+    flex-wrap: wrap;
+    overflow: scroll;
+    p {
+      align-self: center;
+      font-size: 40px;
+    }
+  }
+
+  .this {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .avatar {
@@ -68,8 +71,6 @@ const UserProfileWrapper = styled.div`
 
   .itemsSection {
     display: flex;
-    /* flex-direction: column; */
-    /* flex-wrap: wrap; */
   }
 
   .item {
@@ -96,13 +97,15 @@ export default class UserProfile extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   fetch("http://localhost:3000/api/v1/users")
-  //     .then(r => r.json())
-  //     .then(data => {
-  //       debugger;
-  //     });
-  // }
+  componentDidMount() {
+    fetch('http://localhost:3000/api/v1/users')
+      .then(r => r.json())
+      .then(data => {
+        this.setState({
+          allUsers: data,
+        });
+      });
+  }
 
   render() {
     return (
@@ -140,7 +143,23 @@ export default class UserProfile extends React.Component {
             </div>
           </div>
 
-          <div className="leaderboard">Rankings Board</div>
+          <div className="leaderboard">
+            <p>LeaderBoard</p>
+            {this.state.allUsers.map(user => {
+              return (
+                <div className="this">
+                  <img
+                    src={`https://api.adorable.io/avatars/285/${user.username}.png`}
+                    alt="avatar"
+                    className="item"
+                  />
+                  <span>
+                    @{user.username}({this.state.allUsers.indexOf(user) + 1})
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </UserProfileWrapper>
     );

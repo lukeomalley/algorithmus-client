@@ -5,8 +5,7 @@ import { PrimaryButton } from "../styled-components/Buttons";
 const ModalWrapper = styled.div`
   display: flex;
   height: 100vh;
-  /* border-style: solid;
-  border-color: white; */
+
   align-items: center;
   justify-content: center;
   align-content: center;
@@ -15,8 +14,7 @@ const ModalWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border-style: solid;
-    border-color: white; */
+    border-left: 3px solid ${props => props.theme.accentColor};
     height: 50%;
     width: 50%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
@@ -29,7 +27,7 @@ const ModalWrapper = styled.div`
 
 export default class Modal extends React.Component {
   conditionalRender = () => {
-    if (this.props.message.includes("error")) {
+    if (this.props.message.includes("Sorry")) {
       return <h2>Whoops.......</h2>;
     } else {
       return <h2>Order Confirmation</h2>;

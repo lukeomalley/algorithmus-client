@@ -1,9 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const HeaderWrapper = styled.div`
   display: flex;
+  border-bottom: 3px solid ${props => props.theme.accentColor};
+  margin: 9px;
   justify-content: space-between;
   align-items: center;
   background: ${props => props.theme.primaryColor};
