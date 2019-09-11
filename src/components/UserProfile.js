@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { PrimaryButton } from "../styled-components/Buttons";
+import React from 'react';
+import styled from 'styled-components';
+import { PrimaryButton } from '../styled-components/Buttons';
 
 const UserProfileWrapper = styled.div`
   display: flex;
@@ -90,7 +90,7 @@ export default class UserProfile extends React.Component {
   constructor() {
     super();
     this.state = {
-      allUsers: []
+      allUsers: [],
     };
   }
 
@@ -128,7 +128,7 @@ export default class UserProfile extends React.Component {
             </p>
             <p>Items Owned: </p>
             <div className="itemsSection">
-              {this.state.user.items ? (
+              {this.props.user.items ? (
                 this.props.user.items.map(item => {
                   return <img src={`${item.img_url}`} className="item"></img>;
                 })
