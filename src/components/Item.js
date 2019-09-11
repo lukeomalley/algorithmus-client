@@ -24,19 +24,15 @@ const ItemWrapper = styled.div`
 `;
 
 export default class Item extends React.Component {
-  constructor() {
-    super();
-  }
-
   postItem = (item, token) => {
-    fetch("http://localhost:3000/api/v1/lockers", {
-      method: "POST",
+    fetch('http://localhost:3000/api/v1/lockers', {
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        Accept: "application/json"
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
-      body: JSON.stringify({ item })
+      body: JSON.stringify({ item }),
     })
       .then(r => r.json())
       .then(data => {
@@ -57,9 +53,7 @@ export default class Item extends React.Component {
           <h2>{this.props.item.name}</h2>
           <p>{this.props.item.description}</p>
           <SecondaryButton
-            onClick={() =>
-              this.postItem(this.props.item.id, localStorage.getItem("token"))
-            }
+            onClick={() => this.postItem(this.props.item.id, localStorage.getItem('token'))}
           >
             Purchase Item
           </SecondaryButton>

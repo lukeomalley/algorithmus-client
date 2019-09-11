@@ -46,8 +46,18 @@ const QuestCard = props => {
         <div className="details">
           <h3>{props.quest.title}</h3>
           <div className="rewards">
-            <h5>{props.quest.doubloon}💰</h5>
-            <h5>{props.quest.xp} 🍄</h5>
+            <h5>
+              {props.quest.doubloon}
+              <span role="img" aria-label="exp-icon">
+                💰
+              </span>
+            </h5>
+            <h5>
+              {props.quest.xp}
+              <span role="img" aria-label="exp-icon">
+                🍄
+              </span>
+            </h5>
           </div>
         </div>
       </Link>
