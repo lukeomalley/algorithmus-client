@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { withRouter } from "react-router-dom";
-import { PrimaryButton } from "../styled-components/Buttons";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
+import { PrimaryButton } from '../styled-components/Buttons';
 
 const LoginFormWrapper = styled.form`
   display: grid;
@@ -19,18 +19,18 @@ const LoginFormWrapper = styled.form`
     text-align: center;
   }
 
-  input[type="text"],
-  input[type="password"] {
+  input[type='text'],
+  input[type='password'] {
     font-size: 1.5rem;
     border: none;
     background: ${props => props.theme.primaryColor};
     color: ${props => props.theme.mainWhite};
     border-bottom: 1px solid ${props => props.theme.mainWhite};
-    font-family: "Inconsolata", monospace;
+    font-family: 'Inconsolata', monospace;
   }
 
-  input[type="text"]:focus,
-  input[type="password"]:focus {
+  input[type='text']:focus,
+  input[type='password']:focus {
     outline: none;
     border-bottom: 1px solid ${props => props.theme.accentColor};
   }
@@ -38,8 +38,8 @@ const LoginFormWrapper = styled.form`
 
 class LoginForm extends Component {
   state = {
-    username: "",
-    password: ""
+    username: '',
+    password: '',
   };
 
   handleChange = e => {
@@ -48,25 +48,25 @@ class LoginForm extends Component {
 
   handleLogin = e => {
     e.preventDefault();
-    fetch("http://localhost:3000/api/v1/login", {
-      method: "POST",
+    fetch('http://localhost:3000/api/v1/login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify({
         username: this.state.username,
-        password: this.state.password
-      })
+        password: this.state.password,
+      }),
     })
       .then(res => res.json())
       .then(data => {
         if (data.authenticated) {
-          localStorage.setItem("token", data.token);
-          this.props.updateUser(data.user);
-          this.props.history.push("/quests");
+          localStorage.setItem('token', data.token);
+          this.props.updateUser(JSON.parse(data.user));
+          this.props.history.push('/quests');
         } else {
-          alert("Incorrect username or password");
+          alert('Incorrect username or password');
         }
       });
   };

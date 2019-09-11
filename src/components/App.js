@@ -14,7 +14,7 @@ import NotFound from '../pages/NotFound';
 import { darkTheme } from '../themes';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Crimson+Pro|Inconsolata&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Inconsolata|Montserrat&display=swap');
 
   * {
     margin: 0;
@@ -23,7 +23,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Inconsolata', monospace;
+    /* font-family: 'Inconsolata', monospace; */
+    font-family: 'Montserrat', sans-serif;
     color: ${props => props.theme.mainWhite};
     background-color: ${props => props.theme.primaryColor};
     font-size: 15px;
@@ -97,7 +98,7 @@ class App extends React.Component {
       user: user,
       loading: false,
     });
-    return <Redirect to="/quests" push />;
+    this.props.history.push('/quests');
   };
 
   close = () => {

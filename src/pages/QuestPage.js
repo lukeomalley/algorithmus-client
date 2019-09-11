@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import AceEditor from "react-ace";
-import styled from "styled-components";
-import "brace/mode/javascript";
-import "brace/theme/monokai";
-import { SecondaryButton } from "../styled-components/Buttons";
+import React, { Component } from 'react';
+import AceEditor from 'react-ace';
+import styled from 'styled-components';
+import 'brace/mode/javascript';
+import 'brace/theme/monokai';
+import { SecondaryButton } from '../styled-components/Buttons';
 
-import Quest from "../components/Quest";
+import Quest from '../components/Quest';
 
 const QuestPageWrapper = styled.div`
   display: grid;
   grid-template-columns: 2fr 1.45fr;
   grid-gap: 10px;
   margin: 10px 0;
-  width: 99vw;
+  width: 90vw;
+  height: calc(100vh - 65.5px);
   margin: 0 auto;
 
   .console {
@@ -35,7 +36,7 @@ const QuestPageWrapper = styled.div`
 
   .editor {
     width: 100%;
-    height: auto;
+    height: 600px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   }
 
@@ -51,8 +52,8 @@ export default class QuestPage extends Component {
     super(props);
 
     this.state = {
-      value: "",
-      result: ""
+      value: '',
+      result: '',
     };
   }
 
@@ -71,13 +72,14 @@ export default class QuestPage extends Component {
     return (
       <>
         <QuestPageWrapper>
-          <div>
+          <div className="left-section">
             <Quest quest={this.props.quest} />
             <div className="editor">
               <AceEditor
                 mode="javascript"
                 theme="monokai"
                 width="100%"
+                height="inherit"
                 tabSize={2}
                 name="code"
                 value={this.state.value}
@@ -94,9 +96,7 @@ export default class QuestPage extends Component {
               <h2>console</h2>
             </div>
           </div>
-          <SecondaryButton onClick={() => this.runCode(this.state.value)}>
-            Run Code
-          </SecondaryButton>
+          <SecondaryButton onClick={() => this.runCode(this.state.value)}>Run Code</SecondaryButton>
         </QuestPageWrapper>
       </>
     );

@@ -32,6 +32,7 @@ const HeaderWrapper = styled.div`
 
   .nav-links {
     display: flex;
+    text-transform: capitalize;
   }
 `;
 
