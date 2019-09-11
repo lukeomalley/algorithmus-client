@@ -20,7 +20,7 @@ export const SecondaryButton = styled.button`
   text-align: center;
   background: ${props => props.theme.accentColor};
   color: ${props => props.theme.mainWhite};
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   padding: 0.35rem;
   margin-top: 10px;
   margin-right: 5px;

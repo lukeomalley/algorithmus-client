@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import Modal from '../components/Modal.js';
+import React from "react";
+import styled from "styled-components";
+import Modal from "../components/Modal.js";
 
-import Item from '../components/Item';
+import Item from "../components/Item";
 
 const ShopPageContainer = styled.div`
   width: 90vw;
@@ -15,17 +15,17 @@ const ItemsContainer = styled.div`
   grid-gap: 20px;
 `;
 
-const ShopPage = ({ items, user }) => {
-  return (
-    <ShopPageContainer>
-      <ItemsContainer>
-        {items.map(item => (
-          <Item key={item.id} item={item}></Item>
-        ))}
-      </ItemsContainer>
-    </ShopPageContainer>
-  );
-};
+// const ShopPage = ({ items, user }) => {
+//   return (
+//     <ShopPageContainer>
+//       <ItemsContainer>
+//         {items.map(item => (
+//           <Item key={item.id} item={item}></Item>
+//         ))}
+//       </ItemsContainer>
+//     </ShopPageContainer>
+//   );
+// };
 
 export default class ShopPage extends React.Component {
   constructor() {
@@ -45,7 +45,9 @@ export default class ShopPage extends React.Component {
         </ShopPageContainer>
       );
     } else {
-      return <Modal message={this.props.modalMessage} close={this.props.close} />;
+      return (
+        <Modal message={this.props.modalMessage} close={this.props.close} />
+      );
     }
   }
 }
