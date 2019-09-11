@@ -86,47 +86,6 @@ const UserProfileWrapper = styled.div`
   }
 `;
 
-// const UserProfile = ({ user }) => {
-//   console.log(user);
-//   return (
-//     // console.log(user)
-//     <UserProfileWrapper>
-//       <div className="topSection">
-//         <div className="imageContainer">
-//           <img
-//             className="avatar"
-//             src={`https://api.adorable.io/avatars/285/${user.username}.png`}
-//             alt={user.username}
-//           />
-//         </div>
-//         {/* <div className="button">
-//           <PrimaryButton>Logout</PrimaryButton>
-//         </div> */}
-//       </div>
-//       <div className="bottomSection">
-//         <div className="details">
-//           <p>
-//             Doubloons: <span>{user.doubloon}</span>
-//           </p>
-//           <p>
-//             Experience Score: <span>{user.xp}</span>
-//           </p>
-//           <p>Items Owned: </p>
-//           <div className="itemsSection">
-//             {user.items.map(item => {
-//               return <img src={`${item.img_url}`} className="item"></img>;
-//             })}
-//           </div>
-//         </div>
-
-//         <div className="leaderboard">Rankings Board</div>
-//       </div>
-//     </UserProfileWrapper>
-//   );
-// };
-
-// export default UserProfile;
-
 export default class UserProfile extends React.Component {
   constructor() {
     super();
