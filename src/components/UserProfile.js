@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { PrimaryButton } from '../styled-components/Buttons';
+import React from "react";
+import styled from "styled-components";
+import { PrimaryButton } from "../styled-components/Buttons";
 
 const UserProfileWrapper = styled.div`
   display: flex;
@@ -49,13 +49,18 @@ const UserProfileWrapper = styled.div`
     /* border-style: solid;
     border-color: white; */
     box-shadow: 0 4px 8px 0 rgba(237, 138, 110, 0.5);
+    border-bottom: 3px solid ${props => props.theme.accentColor};
     width: 48%;
   }
 
   .leaderboard {
     box-shadow: 0 4px 8px 0 rgba(237, 138, 110, 0.5);
-
+    border-bottom: 3px solid ${props => props.theme.accentColor};
     width: 48%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    overflow: scroll;
   }
 
   .avatar {
@@ -66,8 +71,6 @@ const UserProfileWrapper = styled.div`
 
   .itemsSection {
     display: flex;
-    /* flex-direction: column; */
-    /* flex-wrap: wrap; */
   }
 
   .item {
@@ -90,17 +93,19 @@ export default class UserProfile extends React.Component {
   constructor() {
     super();
     this.state = {
-      allUsers: [],
+      allUsers: []
     };
   }
 
-  // componentDidMount() {
-  //   fetch("http://localhost:3000/api/v1/users")
-  //     .then(r => r.json())
-  //     .then(data => {
-  //       debugger;
-  //     });
-  // }
+  componentDidMount() {
+    fetch("http://localhost:3000/api/v1/users")
+      .then(r => r.json())
+      .then(data => {
+        this.setState({
+          allUsers: data
+        });
+      });
+  }
 
   render() {
     return (
@@ -138,7 +143,21 @@ export default class UserProfile extends React.Component {
             </div>
           </div>
 
-          <div className="leaderboard">Rankings Board</div>
+          <div className="leaderboard">
+            <h3>LeaderBoards</h3>
+            {this.state.allUsers.map(user => {
+              return (
+                <div>
+                  <img
+                    src={`https://api.adorable.io/avatars/285/${user.username}.png`}
+                    alt="avatar"
+                    className="item"
+                  />
+                  <span>@{user.username}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </UserProfileWrapper>
     );
