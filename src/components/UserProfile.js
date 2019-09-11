@@ -34,6 +34,8 @@ const UserProfileWrapper = styled.div`
 
   .imageContainer {
     display: flex;
+    height: 200px;
+    width: 200px;
     /* margin: 5px; */
     /* border-style: solid;
     border-color: white; */

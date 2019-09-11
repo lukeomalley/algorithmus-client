@@ -45,6 +45,14 @@ const QuestPageWrapper = styled.div`
     grid-template-rows: 2fr 1fr;
     grid-gap: 10px;
   }
+
+  .green {
+    border-left: 5px solid ${props => props.theme.correctAnswer};
+  }
+
+  .red {
+    border-left: 5px solid ${props => props.theme.accentColor};
+  }
 `;
 
 export default class QuestPage extends Component {
@@ -54,6 +62,8 @@ export default class QuestPage extends Component {
     this.state = {
       value: '',
       result: '',
+      correct: null,
+      incorrect: null,
     };
   }
 
@@ -61,11 +71,22 @@ export default class QuestPage extends Component {
     this.setState({ value: e });
   };
 
-  runCode = code => {
-    debugger;
+  runCode = () => {
+    const { quest } = this.props;
+    let code = this.state.value;
+    const functionCall = `${quest.function_name}(${quest.test_input})`;
+    code += functionCall;
     const result = eval(code);
-    console.log(result);
     this.setState({ result });
+    setTimeout(this.checkResult, 0);
+  };
+
+  checkResult = () => {
+    if (this.state.result.toString() === this.props.quest.test_output) {
+      this.setState({ correct: true });
+    } else {
+      this.setState({ incorrect: true });
+    }
   };
 
   render() {
@@ -92,11 +113,15 @@ export default class QuestPage extends Component {
           </div>
           <div className="right-section">
             <div className="question-detials">Quest Details</div>
-            <div className="console">
+            <div
+              className={`console ${this.state.correct && 'green'} ${this.state.incorrect &&
+                'red'}`}
+            >
               <h2>console</h2>
+              <p>result: {this.state.result.toString()}</p>
             </div>
           </div>
-          <SecondaryButton onClick={() => this.runCode(this.state.value)}>Run Code</SecondaryButton>
+          <SecondaryButton onClick={this.runCode}>Run Code</SecondaryButton>
         </QuestPageWrapper>
       </>
     );
