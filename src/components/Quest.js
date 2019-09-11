@@ -40,8 +40,18 @@ const Quest = ({ quest }) => {
         <p>Sample Input: {quest.sample_input}</p>
         <p>Sample Output: {quest.sample_output}</p>
         <span>
-          <p>🍄 {quest.xp}</p>
-          <p>💰 {quest.doubloon}</p>
+          <p>
+            <span role="img" aria-label="exp-icon">
+              🍄
+            </span>
+            {quest.xp}
+          </p>
+          <p>
+            <span role="img" aria-label="exp-icon">
+              💰
+            </span>
+            {quest.doubloon}
+          </p>
         </span>
       </div>
     </QuestWrapper>

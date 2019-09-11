@@ -79,7 +79,7 @@ const LandingPage = () => {
   return (
     <LandingPageWrapper>
       <div className="title">
-        <img src="http://www.aljanh.net/data/archive/img/3646125027.jpeg" />
+        <img src="http://www.aljanh.net/data/archive/img/3646125027.jpeg" alt="landing page" />
         <div className="centered">ALGORITHMUS</div>
         <Link to="/login">Login</Link>
       </div>

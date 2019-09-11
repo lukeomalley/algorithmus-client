@@ -15,26 +15,9 @@ const ItemsContainer = styled.div`
   grid-gap: 20px;
 `;
 
-const ShopPage = ({ items, user }) => {
-  return (
-    <ShopPageContainer>
-      <ItemsContainer>
-        {items.map(item => (
-          <Item key={item.id} item={item}></Item>
-        ))}
-      </ItemsContainer>
-    </ShopPageContainer>
-  );
-};
-
 export default class ShopPage extends React.Component {
-  constructor() {
-    super();
-  }
-
   render() {
     if (this.props.show === false) {
-      // debugger;
       return (
         <ShopPageContainer>
           <ItemsContainer>
@@ -49,5 +32,3 @@ export default class ShopPage extends React.Component {
     }
   }
 }
-
-// export default ShopPage;
