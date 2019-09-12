@@ -6,6 +6,7 @@ import 'brace/theme/monokai';
 import { PrimaryButton } from '../styled-components/Buttons';
 
 import Quest from '../components/Quest';
+import Markdown from '../components/Markdown';
 
 const QuestPageWrapper = styled.div`
   width: 90vw;
@@ -147,7 +148,9 @@ export default class QuestPage extends Component {
             </div>
           </div>
           <div className="right-section">
-            <div className="question-detials">Quest Details</div>
+            <div className="question-detials">
+              <Markdown />
+            </div>
             <PrimaryButton onClick={this.runCode} className="run-code">
               Run Code
             </PrimaryButton>
