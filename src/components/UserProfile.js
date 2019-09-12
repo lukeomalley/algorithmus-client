@@ -135,7 +135,7 @@ export default class UserProfile extends React.Component {
             <div className="itemsSection">
               {this.props.user.items ? (
                 this.props.user.items.map(item => {
-                  return <img src={`${item.img_url}`} className="item"></img>;
+                  return <img src={item.img_url} className="item"></img>;
                 })
               ) : (
                 <p>You dont have items</p>

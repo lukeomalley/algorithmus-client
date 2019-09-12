@@ -45,6 +45,7 @@ export default class Item extends React.Component {
         // pass it back to shop page
         // pass it back to app
         this.props.toggleShow(data);
+        this.props.updateItems(item);
       });
   };
 

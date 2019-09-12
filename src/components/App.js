@@ -108,6 +108,10 @@ class App extends React.Component {
     });
   };
 
+  updateUserItems = item => {
+    this.setState({ user: { ...this.state.user, items: [...this.state.user.items, item] } });
+  };
+
   close = () => {
     this.setState({
       showModal: false,
@@ -149,6 +153,7 @@ class App extends React.Component {
                 modalMessage={this.state.modalMessage}
                 user={this.state.user}
                 items={this.state.items}
+                updateItems={this.updateUserItems}
               />
               <ProtectedRoute
                 exact

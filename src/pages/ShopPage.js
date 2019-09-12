@@ -22,7 +22,11 @@ export default class ShopPage extends React.Component {
         <ShopPageContainer>
           <ItemsContainer>
             {this.props.items.map(item => (
-              <Item item={item} toggleShow={this.props.toggleShow}></Item>
+              <Item
+                item={item}
+                toggleShow={this.props.toggleShow}
+                updateItems={this.props.updateItems}
+              ></Item>
             ))}
           </ItemsContainer>
         </ShopPageContainer>
