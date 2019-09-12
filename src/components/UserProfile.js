@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { PrimaryButton } from '../styled-components/Buttons';
+import React from "react";
+import styled from "styled-components";
+import { PrimaryButton } from "../styled-components/Buttons";
 
 const UserProfileWrapper = styled.div`
   display: flex;
@@ -47,7 +47,7 @@ const UserProfileWrapper = styled.div`
     justify-content: space-around;
     align-items: center;
     justify-items: center;
-    flex-direction: column;
+    /* flex-direction: column; */
     /* align-content: center; */
     flex-wrap: wrap;
     overflow: scroll;
@@ -55,12 +55,22 @@ const UserProfileWrapper = styled.div`
       align-self: center;
       font-size: 40px;
     }
+
+    .boards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
   }
 
   .this {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    span {
+      margin: 20px;
+    }
   }
 
   .avatar {
@@ -93,16 +103,16 @@ export default class UserProfile extends React.Component {
   constructor() {
     super();
     this.state = {
-      allUsers: [],
+      allUsers: []
     };
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/users')
+    fetch("http://localhost:3000/api/v1/users")
       .then(r => r.json())
       .then(data => {
         this.setState({
-          allUsers: data,
+          allUsers: data
         });
       });
   }
@@ -145,20 +155,22 @@ export default class UserProfile extends React.Component {
 
           <div className="leaderboard">
             <p>LeaderBoard</p>
-            {this.state.allUsers.map(user => {
-              return (
-                <div className="this">
-                  <img
-                    src={`https://api.adorable.io/avatars/285/${user.username}.png`}
-                    alt="avatar"
-                    className="item"
-                  />
-                  <span>
-                    @{user.username}({this.state.allUsers.indexOf(user) + 1})
-                  </span>
-                </div>
-              );
-            })}
+            <div className="boards">
+              {this.state.allUsers.map(user => {
+                return (
+                  <div className="this">
+                    <img
+                      src={`https://api.adorable.io/avatars/285/${user.username}.png`}
+                      alt="avatar"
+                      className="item"
+                    />
+                    <span>
+                      @{user.username}({this.state.allUsers.indexOf(user) + 1})
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </UserProfileWrapper>
