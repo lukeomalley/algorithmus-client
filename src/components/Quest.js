@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const QuestWrapper = styled.div`
   display: grid;
   grid-template-columns: auto auto;
-  grid-gap: 20px;
   text-align: left;
   align-items: center;
   margin-bottom: 10px;
@@ -19,11 +18,14 @@ const QuestWrapper = styled.div`
   }
 
   h1 {
-    margin: 0;
   }
 
   .details {
-    padding: 10px;
+    padding: 20px;
+  }
+
+  em {
+    color: ${props => props.theme.accentColor};
   }
 `;
 
@@ -31,14 +33,16 @@ const Quest = ({ quest }) => {
   const image = require(`../images/${quest.img_url}`);
   return (
     <QuestWrapper>
-      <div>
-        <img src={image} alt={quest.title} />
-      </div>
-      <div className="details">
+      <img src={image} alt={quest.title} />
+      <span className="details">
         <h1>{quest.title}</h1>
         <p>{quest.question}</p>
-        <p>Sample Input: {quest.sample_input}</p>
-        <p>Sample Output: {quest.sample_output}</p>
+        <p>
+          Sample Input: <em>{quest.sample_input}</em>
+        </p>
+        <p>
+          Sample Output: <em>{quest.sample_output}</em>
+        </p>
         <span>
           <p>
             <span role="img" aria-label="exp-icon">
@@ -47,13 +51,13 @@ const Quest = ({ quest }) => {
             {quest.xp}
           </p>
           <p>
-            <span role="img" aria-label="exp-icon">
+            <span role="img" aria-label="doubloon-icon">
               💰
             </span>
             {quest.doubloon}
           </p>
         </span>
-      </div>
+      </span>
     </QuestWrapper>
   );
 };

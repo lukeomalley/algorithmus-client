@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PrimaryButton = styled.button`
+  font-family: inherit;
   border: none;
   text-align: center;
   background: ${props => props.theme.accentColor};

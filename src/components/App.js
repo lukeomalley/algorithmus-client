@@ -11,7 +11,7 @@ import Header from '../components/Header';
 import LoginPage from '../pages/LoginPage';
 import LandingPage from '../pages/LandingPage';
 import NotFound from '../pages/NotFound';
-import { darkTheme } from '../themes';
+import { darkTheme, blueTheme, lightTheme } from '../themes';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Inconsolata|Montserrat&display=swap');
