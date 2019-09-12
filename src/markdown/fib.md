@@ -1,4 +1,4 @@
-# Paperfold Sequence
+# Fibanacci Sequence
 <br />
 Lorem ipsum dolor amet lo-fi live-edge affogato, yuccie etsy fixie godard truffaut church-key cronut succulents next level austin. Copper mug etsy hexagon, hot chicken ugh art party swag taxidermy distillery tattooed cray activated charcoal chambray freegan fanny pack.
 <br />

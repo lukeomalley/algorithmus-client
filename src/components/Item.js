@@ -21,6 +21,10 @@ const ItemWrapper = styled.div`
     max-height: 250px;
     margin: 20px;
   }
+
+  span {
+    font-size: 17px;
+  }
 `;
 
 export default class Item extends React.Component {
@@ -57,7 +61,12 @@ export default class Item extends React.Component {
           >
             Purchase Item
           </SecondaryButton>
-          <span>{this.props.item.cost} doubloons</span>
+          <span>
+            {this.props.item.cost}{' '}
+            <span role="img" aria-label="icon">
+              💰
+            </span>
+          </span>
         </div>
       </ItemWrapper>
     );

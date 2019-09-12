@@ -101,6 +101,13 @@ class App extends React.Component {
     this.props.history.push('/quests');
   };
 
+  updateUserSolved = user => {
+    this.setState({
+      user: user,
+      loading: false,
+    });
+  };
+
   close = () => {
     this.setState({
       showModal: false,
@@ -123,7 +130,7 @@ class App extends React.Component {
                   let questObj = this.state.quests.find(quest => quest.id === questId);
                   if (this.state.user) {
                     if (questObj) {
-                      return <QuestPage quest={questObj} />;
+                      return <QuestPage quest={questObj} updateUser={this.updateUserSolved} />;
                     } else {
                       return <NotFound />;
                     }

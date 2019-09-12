@@ -21,7 +21,7 @@ const QuestPageWrapper = styled.div`
     color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     padding: 20px;
-    height: 200px;
+    height: 259.5px;
   }
 
   .question-detials {
@@ -121,8 +121,8 @@ export default class QuestPage extends Component {
         solution: this.state.value,
       }),
     })
-      .then(res => res.json)
-      .then(console.log());
+      .then(res => res.json())
+      .then(user => this.props.updateUser(user));
   };
 
   render() {
@@ -149,11 +149,9 @@ export default class QuestPage extends Component {
           </div>
           <div className="right-section">
             <div className="question-detials">
-              <Markdown />
+              <Markdown file={this.props.quest.markdown_details} />
             </div>
-            <PrimaryButton onClick={this.runCode} className="run-code">
-              Run Code
-            </PrimaryButton>
+
             <div
               className={`console ${this.state.correct && 'green'} ${this.state.incorrect &&
                 'red'}`}
@@ -192,6 +190,9 @@ export default class QuestPage extends Component {
                 </div>
               )}
             </div>
+            <PrimaryButton onClick={this.runCode} className="run-code" style={{ height: '50%' }}>
+              Run Code
+            </PrimaryButton>
           </div>
         </QuestPageWrapper>
       </>

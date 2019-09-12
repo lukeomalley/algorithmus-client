@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown/with-html';
-import markdown from '../markdown/paperfold.md';
 
 const MarkdownWrapper = styled.div`
   width: 700px;
-
-  & code {
-    background: ${props => props.theme.mainWhite};
-  }
 `;
 
 class Markdown extends Component {
@@ -19,6 +14,7 @@ class Markdown extends Component {
   }
 
   componentWillMount() {
+    const markdown = require(`../markdown/${this.props.file}`);
     fetch(markdown)
       .then(response => response.text())
       .then(text => {
