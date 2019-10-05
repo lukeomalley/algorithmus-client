@@ -18,23 +18,24 @@ const LoginContainer = styled.div`
     text-align: center;
     font-size: 50px;
     letter-spacing: 20px;
+    margin-right: -20px;
   }
 `;
 
 const LoginPage = ({ updateUser }) => {
-  const [signup, setSignup] = useState(true);
+  const [login, setLogin] = useState(true);
   return (
     <LoginContainer>
       <h1 className="title">Algorithmus</h1>
-      {signup ? (
+      {login ? (
         <>
           <LoginForm updateUser={updateUser} />
-          <button onClick={() => setSignup(false)}>Sign Up</button>
+          <button onClick={() => setLogin(false)}>Sign Up</button>
         </>
       ) : (
         <>
           <SignupForm updateUser={updateUser} />
-          <button onClick={() => setSignup(true)}>Log In</button>
+          <button onClick={() => setLogin(true)}>Log In</button>
         </>
       )}
     </LoginContainer>
