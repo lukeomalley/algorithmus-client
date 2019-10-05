@@ -19,6 +19,7 @@ const LoginContainer = styled.div`
     text-align: center;
     font-size: 50px;
     letter-spacing: 20px;
+    /* remove the letter spacing from the end of the right side of the title */
     margin-right: -20px;
   }
 `;

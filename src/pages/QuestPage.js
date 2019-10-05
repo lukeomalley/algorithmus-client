@@ -173,7 +173,7 @@ export default class QuestPage extends Component {
                     spend them wisly traveler
                   </p>
                   <p>
-                    + {this.props.quest.doubloon}{' '}
+                    + {this.props.quest.xp}{' '}
                     <span role="img" aria-label="icon">
                       🍄
                     </span>{' '}
