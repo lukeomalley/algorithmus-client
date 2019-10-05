@@ -22,10 +22,15 @@ const HeaderWrapper = styled.div`
     margin-left: 20px;
     cursor: pointer;
   }
+
   img {
     width: 25px;
     height: 25px;
     border-radius: 50%;
+  }
+
+  .title {
+    font-size: 40px;
   }
 
   .userlink {
@@ -44,7 +49,9 @@ const HeaderWrapper = styled.div`
 const Header = ({ user }) => {
   return (
     <HeaderWrapper>
-      <h1>Algorithmus</h1>
+      <Link to="/quests">
+        <h1 className="title">Algorithmus</h1>
+      </Link>
       {user ? (
         <div className="nav-links">
           <Link to="/quests">Quests</Link>
