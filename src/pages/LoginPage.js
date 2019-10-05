@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
+import { PrimaryButton } from '../styled-components/Buttons';
 
 const LoginContainer = styled.div`
   display: grid;
@@ -30,12 +31,12 @@ const LoginPage = ({ updateUser }) => {
       {login ? (
         <>
           <LoginForm updateUser={updateUser} />
-          <button onClick={() => setLogin(false)}>Sign Up</button>
+          <PrimaryButton onClick={() => setLogin(false)}>Sign Up</PrimaryButton>
         </>
       ) : (
         <>
           <SignupForm updateUser={updateUser} />
-          <button onClick={() => setLogin(true)}>Log In</button>
+          <PrimaryButton onClick={() => setLogin(true)}>Log In</PrimaryButton>
         </>
       )}
     </LoginContainer>
